@@ -1,0 +1,79 @@
+vedremo il concetto del clustering, vedremo diverse tipologie di algoritmi, tre soluzioni diverse, non c'è un algoritmo che funziona meglio di tutti gli altri, dipende dall'insieme di dati.
+abbiamo un insieme di oggetti, lo immaginiamo come uno spazio, vogliamo raggruppare gli oggetti in cluster, lo facciamo confrontando un concetto che definiamo come distanza(molto simile alla similarità 
+tra oggetti), la chiave infatti è la definizione stessa di distanza tra oggetti.
+clustering vs classificazione, differenza, clustering è unsupervised(non sappiamo a priori quali siano i cluster), nella classificazione invece sappiamo le classi dove porre gli oggetti(supervised).
+per la classificazione abbiamo un training set dove costruire un modello, un'altro data set chiamato testing set dove testare il nostro modello(classificatore)
+vedremo pure metodi per valutare la qualità di un classificatore
+
+tutti gli oggetti appartenenti al nostro insieme di dati possiamo vederli come punti, che appartengono ad uno spazio metrico(dove è definita una distanza)
+proprietà distanza:
+	distanza sempre positiva o uguale da 0
+	distanza simmetrica
+	proprietà triangolare(somma delle distanze tra due punti ed un punto maggiore uguale distanza tra uno dei due punti)  IMP
+
+se usiamo uno spazio euclideo come spazio metrico allora definiamo la distanza come distanza euclidea(oppure la distanza di manhattan, spostarsi lungo le componenti, oppure la generalizzazione della distanza euclidea aka normaL, oppure la norma(inf) cioè la massima distanza?, oppure la distanza del coseno)
+
+se usiamo uno spazio non euclideo(la media di un insieme di punti interni potrebbe non appartenere allo spazio, cioè il centroide potrebbe non essere definito, la media potrebbe non essere definita, ex stringhe, o potrebbe restituire un elemento non appartenente allo spazio, ex vettori interi )
+
+distanza tra due oggetti come distanza di jaccard(definita dalla similarità di jaccard, come 1- card(intersezione)/card(unione), 1 per totale similarità, 0 per nessuna similarità.
+distanza di hamming
+distanza di edit
+
+tassonomie degli algoritmi di clustering:
+metodi gerarchici e agglomerativi
+metodi di partizionamento  k-means, knn
+metodi basati sulla densità  dbscan basato su densità cioè cluster iniziali e li estendo, optics
+metodi basati su griglia  partizionamento dello spazio su un insieme di celle, e poi vedo dove stanno gli oggetti
+metodi basati su modello  ipotizzo un modello per ogni cluster e si trova la disposizione migliore del modello
+
+criteri importanti sono il tipo di spazio metrico utilizzato e l'utilizzo della memoria secondaria
+
+problema della dimensionalità, troppi attributi, le distanze definite non vanno più bene, il numero di dimensioni è direttamente proporzionale allo sparpagliamento dei punti, bisogna trovare altri modi per fare i cluster, si usa una dimennsionality reduction, cioè mappare i punti in meno dimensioni, in modo che le distanze relative restino più o meno le stesse, cioè togliere attributi che creano soltanto noise
+
+lezione2 del clustering:
+clustering gerarchico, 
+a) assegna a ciascun punto un cluster separato,
+b) unisci i due cluster più vicini in un unico cluster
+c)ripetiamo il passo precedente finchè non è soddisfatto il criterio di terminazione
+
+partiamo dal caso di uno spazio euclideo, possiamo definire ogni punto, possiamo prendere la media dei punti del cluster(centroide)
+la distanza tra i cluste può essere definita come la distanza tra i centroidi
+quando uniamo i cluster dobbiamo ricalcolare i centroidi
+dendrogramma: foglie sono i punti, in maniera bottom-up abbiamo costruito questo albero, ogni volta che uniamo due cluster uniamo i nodi del dendrogramma
+finisco quando ho un unico albero con una sola radice
+tagliando l'albero ad un certo livello abbiamo dei cluster.
+altre misure di cluster, i due punti più vicini e calcolare la distanza, oppure con i punti più lontani(single complete average)
+medoide= punto medio appartenente al cluster, simil mediana
+altri strumenti per clusterare sono il raggio(distanza dal centroide massima) del cluster e il diametro(distanza massima tra due punti)
+clustering agglomerativo e clustering divisivo, rispetto ad un approccio top-down o bottom-up
+complessita sommatoria(n-i)^2 dove n è il numero di  cluster iniziali, posssiamo utilizzare un minheap per per vedere le distanze e la complessità diminuisce O(nlogn) per ogni ricerca del minimo, estrazione e reinserimento nella coda.
+il clustroide è il punto rappresentativo del cluster.
+
+K-Means:
+lavorare su spazi euclidei e conoscendo il numero di cluster a priori.
+diverso dal clustering gerarchico, assegnamo dei punti a cluster che già stabiliamo in qualche modo, prendo k punti, ognuno di questi punti è il centroide del cluster, assegnamo i punti in base alla distanza minima.
+punti con la stessa distanza sono difficili da assegnare, sono outlier?
+nel momento in cui abbiamo i punti assegnati dobbiamo ricalcolare il centroide, e vedere se ancora i punti sono all'nterno del cluster, questo potrebbe dare luogo ad un loop infinito(un elemento entra in un cluster e poi esce e poi entra)
+con la funzione soglia mettiamo in pratica il criterio di terminazione.
+la scelta iniziale dei k punti è molto importante, solitamente gli algoritmi greedy sono quelli che funzionano meglio, guardare le slide per un algoritmo greedy.
+la distanza media dei punti dai centroidi è la funzione soglia, è un buon metodo per  vedere la qualità del nostro clustering.
+la scelta di k causa un diminishing return, dobbiamo trovare il valore che effettivamente approssima meglio.
+ricerca binaria per migliorare la ricerca di k.
+complessità, il k means è abbastanza efficiente, t iterazioni per k cluster, O(tkn), converge spesso ad una soluzione localmente ottimale, cluster di forma non convessa impossibili, non considera il concetto di vicinanza locale tra punti
+problema degli outlier come già visto
+
+
+DBSCAN: 
+algoritmo basato su densità, la chiave di tutto è la definizione di cluster
+ogni cluster è definitoi come una regione di punti connsessi con densità sufficientemente alta
+epsilon intorno di un punto, si considerano i core point, cioè i punti con abbastanza elementi nell'intorno.
+punto direttamente raggiungibile per densità: definizione sulle slide. 
+punto raggiungibile per densità: esiste un cammino da P a Q (chiusura transitiva like)
+punto connesso per densità: punto raggiungibile per densita da P e Q
+tutti i punti che posso raggiungere dal cluster fanno parte del cluster
+si parte da un punto random, si calcola l'intorno e si vede quali punti appartengono all'intorno, gli outlier come rumore
+prendere gli epsilon intorni dei punti appartenenti all'epsilon intorno iniziale, si ripete ricorsivamente.
+quelli  marcati come rumore possono appartenere ad altri cluster o rimanere outlier
+Importante come prima stabilire i parametri, minpoints >= dimensioni+1, per il problema delle dimensionalità, comunque dipendente dal dataset e dal rumore.
+per scegliere epsilon, k-nearest neighbor
+ovviamente non c'è un algoritmo di clustering che funziona meglio

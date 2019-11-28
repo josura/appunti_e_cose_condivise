@@ -1,0 +1,4 @@
+per i grafici ci basiamo sulla funzione plot, y-xlim è l'intervallo da considerare, il comando serve a stampare delle linee e degli scatterplot, se vogliamo stampare punti usiamo points(x,y,col),legend per aggiungere una leggenda al grafico
+var,sd,cov,median,quantile,cor
+in R abbiamo le maggiori distribuzioni di probabilità(in teoria quasi tutte), valori random basati sulle distribuzioni, norm per la normale
+possiamo fare molte cose, esportare, importare, lancare job, usare il terminale, cancellare e salvare varie cose  

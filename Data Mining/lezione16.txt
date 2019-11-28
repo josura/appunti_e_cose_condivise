@@ -1,0 +1,35 @@
+graph matching:
+controllare se due grafi siano uguali o simili tra di loro.
+come facciamo a stabilire se due grafi siano uguali tra di loro, costruiamo una funzione biiettiva di mapping(f:A->B dove A è l'insieme dei nodi del primo grafo da confrontare, B etc..) tale che (u,v)C E1 se (f(u),f(v))C E2
+siamo comunque interessati al subgraph mapping(sottografo isomorfismo).
+ovviamente il graph-subgraph matching può avere diverse soluzioni.
+grafo target grafo più grande, grafo query grafo da trovare e mappare(match tra i due grafi), possiamo comunque calcolare la quantità di match (più match del grafo query sul grafo target)
+abbiamo un automorfismo quando mappiamo un grafo con se stesso.
+si dimostra che il subgraph matching è NP-complete, il graph matching è NP-hard (la complessità dei metodi usati fino a questo momento sono esponenziali e non polinomiali)
+
+
+ALGORITMI PER IL GRAPH MATCHING	:
+solitamente si rappresentano i grafi dati dal problema in modo univoco(forma canonica), i due grafi(sottografi) saranno matchati se le loro rappresentazioni canoniche saranno matchate, il problema è trovare le forme canoniche.
+
+partiamo l'analisi del problema dal brute force, dobbiamo esplorare lo spazio di tutte le possibili soluzioni, costruiamo un albero che associa nodi del primo grafo con nodi del secondo, mappiamo tutti i nodi possibili in questo modo, n! foglie, ovviamente non tutte le soluzioni(cammini da radice a foglia) saranno giuste, abbiamo bisogno di strumenti particolari.
+
+look-ahead(predizione) e backtracking(torniamo indietro se vediamo che la soluzione non porta a nessuna cosa giusta)
+
+una considerazione semplice è guardare il grado del nodo da mappare(il grado del nodo query deve essere minore uguale al grado del nodo target), si vedono i percorsi uno alla volta, se non si rispetta la condizione si torna indietro(algoritmo di ullman)
+Algoritmo Vento-Foggia, si basa sul concetto di state-space representation(rappresentazione di dati che variano nel tempo, è possibile sapere di un dato in uno stato particolare(la definizione formale c'entra con differenziali e altro non lo so se sia utile da fare, il concetto importante è che un insieme di dati varia nel tempo e possiamo riconoscerli guardando lo stato))
+il processo di matching è visto come successione di stati, il processo di matching è ricorsivo, bisogna soddisfare delle regole di fattibilità
+VF(da rivedere bene sia su internet che sulle slide)
+
+esistono varie ottimizzazioni per vf, possiamo ordinare i nodi della query(sulla base del grado), i nodi vengono quindiprocessati seguendo l'ordinamento fissato,...
+questa idea di ordinare i nodi della query era già presente nell'algoritmo RI, partendo da nodi con grado alto possiamo sia essere quasi sicuri di trovare un giusto e veloce match, inoltre possiamo tralasciare alcune regole di fattibilità(per esempio possiamo considerare solo la regola di Ullman), l'ordinamento si può fare in diversi modi, considerando(dynamic) o no il grafo target(static, più pesante considerarlo)
+RI usa questo approccio con singola regola di ullman, ordinamento statico più regola di ullman, comunque durante la costruzione l'ordinamento cambia in base anche al collegamento con altri nodi inseriti nell'ordinamento, quindi i nodi vengono ordinati in base ad un punteggio(somma di cardinalità scelte dai tre insiemi, massimizzare l'insieme dei nodi connessi, nodi ordinati connessi direttamente(adj) a v, nodi ordinati connessi indirettamente a v, nodi non connessi) in caso di parità varie tra le cardinalità, nodo random, andare a guardare l'esempio per capire bene
+
+GRAPH MATCHING IN DB DI GRAFI:
+graph match su database, trovare tutti i grafi che matchano, la soluzione naive è quella di utilizzare lo stesso algoritmo su tutte i record(grafi), per aumentare le prestazioni dobbiamo indicizzare, filtrare su tutti i record, trovare quelli che effettivamente possono essere matchati.
+ci sono vari modi per indicizzare un grafo, o con feature(archi, cammini di lunghezze varie, alberi, qualcosa del genere, nulla di troppo complicato), e non basata su feature, utilizzare delle strutture(Btree, Rtree), che ci permette di memorizzare questi grafi in maniera "performante".
+noi ci concentriamo sulla prima feature.
+
+contando i cammini di lunghezza 2 con query e target(con numeri per vedere quante volte), confrontare le feature con i vari record, scartare i record che non rispettano le condizioni sulle feature della query, più efficace è il filtraggio, meglio il risultato.
+tecnica molto usata e importante è l'indicizzazione inversa, per ogni feature memorizzo i set di grafi che contengono quella feature(con lista o qualcosa del genere prob, in pratica come tabelle hash a risoluzione di conflitti con liste-concatenzione), comunque questa operazione è preprocessing, possiamo inoltre utilizzare una specie di bitmap e fare & logico su tutte le feature da avere per riuscire a prendere i record che rispettano(posseggono) le feature richieste.
+possiamo filtrare ulteriormente i record di grafi vedendo il nodo da dove partono le feature, se non partono dallo stesso nodo allora possiamo scartarlo, questo è implementato solitamente comunque con indice inverso(locale), che tiene una bitmap dei nodi(ordinamento dei cammini?)
+quindi un vertice x per essere compatibilie con v deve contenere tutte le feature che partono dal nodo v nella query e tutte le feature partono dal nodo x.

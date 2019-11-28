@@ -1,0 +1,35 @@
+differenza tra classificazione e predizione: nella classificazione abbiamo classi dove andare a mettere gli oggetti, costruiamo un modello che decida la classe corrispondente sul training set
+
+lo schema generale di classificazione, si costruisce il modello sulla base del training set, tramite alberi decisionali bayes o altro
+
+per stimare l'accuratezza del modello usiamo un test set, il test set può essere un sottoinsieme dei nostri dati(dividiamo i nostri set in due)
+
+se il nostro modello è troppo basato sul training set abbiamo overfitting, troppo dipendente dal training set
+
+un classificatore deve essere accurato, e veloce(nel training e nella prediction), robusto(dati con rumore e mancanti, errori per certi versi), scalabile(per grossi dati), interpretabilità dei risultati
+
+ALBERI DECISIONALI
+partizionamento del training set, le foglie sono le classi, i nodi sono i rami decisionali
+possono essere visti come condizionali IF-THEN, ogni regola equivale ad un cammino dalla radice ad una foglia
+può essere costruito in maniera top-down, partendo dalla radice, se tutte le t-uple associate ad un nodo t assumono lo stesso valore sull'attributo classificatore allora creiamo un nodo foglia contenente tutti i dati, altrimenti selezioniamo un attributo A(tra quelli non ancora scelti per il ramo considerato) e si effettua una partizione del nodo(splitting) sulla base dei valori di A
+bisogna scegliere l'attributo su cui partizionare in modo da avere classi di elementi con più o meno la stessa cardinalità
+
+dopo la divisione bisogna vedere se un nodo è puro o impuro(con attributi da scegliere ancora o no)
+
+mi sta assomigliando molto all'analisi delle dipendenze funzionali, dobbiamo comunque non suppore che i dati siano strutturati, quindi non è realmente una analisi di dipendenze funzionali, si può comunque pensare ad un modo di costruire il nostro modello utilizzando pure le dipendenze funzionali.
+i passi base rimangono sempre gli stessi, cioè vedere se è impuro o puro e splittare di conseguenza
+comunque bisogna vedere come fare lo splitting, in base al tipo degli attributi(categoriali, continui,booleani)
+la cosa importante nella costruzione dell'albero decisionale è la scelta degli attributi di split, che come vedremo in seguito, devono massimizzare o minimizzare certe misure di qualità del nostro albero
+
+la scelta dell'attributo da utilizzare nelle partizioni viene fatta sulla misura di goodness(misura basata sull'entropia,meno l'entropia è presente, i dati sono circa uniformi,puri per così dire, altrimenti entropia uniforme, i dati si presentano un po' alla cazzo di cane,l'information gain rappresenta questa riduzione di entropia)
+miriamo ad ottenere partizioni con entropia bassa, cerchiamo di minimizzare l'entropia globale, in modo da avere nodi puri(più o meno)
+
+l'information gain è la sottrazione tra l'entropia iniziale e l'entropia dopo lo split, questa è la funzione da massimizzare, information gain perchè rappresenta la possibile informazione in più che potremmo acquisire dallo split(teoricamente).
+la limitazione è che quando abbiamo attributi con molti valori(come chiavi), abbiamo entropia nulla, cioè information gain massimo, questo introduce molto bias e overfitting se comprendo bene
+per sopperire a questa limitazione abbiamo il gainratio(vede se gli attributi e gli split on quegli attributi creano molte partizioni con pochi record, quindi gainratio basso ma gain alto)
+
+Gini index altrimenti per la verifica delle prestazioni del nostro modello:
+il gini index misura la possibilità che i =/= j dove i e j sono classi scelte a caso(rivedere bene)
+il gini index misura l'impurità di un insieme di tuple Sx associato all'albero decisionale, cioè quanto si discostano dall'essere pure(stesso valore nel nostro attributo classificatore)
+bisogna trovare l'attributo che minimizza lo ginisplit(le definizionie mi sembra un po' inutile ricordarmele ma almeno i concetti te li devi ricordare)
+il gini index è un po' brutto, ma il concetto è che dobbiamo controllare quanto sono collegate tra di loro le tuple.

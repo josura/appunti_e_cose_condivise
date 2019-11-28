@@ -1,0 +1,15 @@
+R ha un pacchetto per quasi tutto(reti neurali etc...)
+data mining differisce da banche dati(database): le basi di dati si occupano dell'organizzazione e ricerca dei dati, data mining si occupa dell'estrazione della conoscenza(costruzione di modelli matematici su dati) in modo da poter tentare di prevedere comportamenti futuri, sviluppando talvolta strategie che sfruttino la nostra analisi(esempio del pannolino con la birra, il pannolino implica la birra, ma probabilmente non il contrario, il padre è venuto per prendere il pannolino, quindi come scopo primario).
+alto supporto significa ?
+basso supporto significa che gli elementi che sono in relazione tra di loro sono pochi, ma le associazioni sono molto importanti
+per amazon, si usa la similarità tra gli utenti, quindi si fanno associazioni tra utenti e raccomandazioni di oggetti da presentare ad essi, oppure con le medicine, che agiscono su certi geni, che a loro volta sono molto presenti in certe malattie(in pratica ci sta presentando le reti neurali, ha fatto il disegnino)
+il training set(la storia di predictor e response) più grande è meglio è( sia in prediction che nella classification), in questo caso le due sono supervised(abbiamo sia predictor che response ovviamente)
+nel clustering invece la classificazione è unsupervised, cioè sono le relazioni tra gli elementi che ci permettono di stabilire dei comportamenti, raggruppando i dati in classi che sono costruite da algoritmi di clustering
+SVM per creare foreste( tanti alberi decisionali)
+dice che nel quantum computing i problemi di ottimizzazione diventano fantastici
+con pochi dati il data mining ha risultati deboli, troppo rumore, predizioni poco accurate
+deep learning ad un solo livello, allora rete neurale.
+le reti neurali non sono explainable, non si sa quindi perchè prende certe decisioni, per riuscire ad avere la spiegazione della decisione si devono usare ibridi tra algoritmi explainable(SWM,alberi decisionali, estrattori di regole, etc..) e algoritmi inexplanable.
+i classificatori bayesiani sono belli ma li faremo forse un po' male, perchè li fanno male dappertutto
+pulvirenti fara catene di Markov e altro( dai che lo distruggiamo quest'anno)
+Uno degli argomenti più importanti sarà data mining sulle reti(poi le descrizioni sono tutte fuffa)

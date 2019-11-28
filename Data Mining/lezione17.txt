@@ -1,0 +1,39 @@
+graph mining: trovare sottografi in un database di grafi, vedere quali sono i frequenti che superano una certa soglia(si confronta il supporto, cioè la frequenza del sottografo nel database, con la soglia)
+
+il problema assume somiglianza con quello dei frequent subset(con algoritmo a-priori)
+sottografi frequenti con meno nodi devono essere per forza in sottografi frequenti con più nodi
+
+FSM: 
+da input di un dataset rappresentato a grafo, usiamo il nostro algoritmo.
+creazione di sottografi, pruning, aggiunta all'insieme di grafi frequenti(da rivedere)
+se si vuole usare apriori bisogna sviluppare un approccio breadth first(prima in ampiezza) partendo da grafi con pochi nodi(all' inizio 1)
+
+gemerazioni join based con nodi o con archi(creazione di nuovi candidati da vecchi candidati tramite somma di nodi o di archi(vedere su internet e le slide per vedere come farlo))
+
+i core sono le parti in comune tra due grafi
+la generazione di candidati può portare ad un insieme di candidati abbastanza grande(ci possono essere anche candidati che siano matchati)
+con la generazione extend based , ci basiamo su un algoritmo dfs, dal cammino più a destra del DFS-tree creato aggiungiamo o un nodo o un arco(usiamo dfs per evitare di avere duplicati, quindi non avremo ridondanze)
+pruning sulle ridondanze: lo stesso sottografo lo posso ottenere più volte, come facciamo a vedere se i grafi siano isomorfismi(matchati), abbiamo bisogno di una rappresentazione univoca che ci permetta di confrontarli(come già visto nelle scorse lezioni), la rappresentazione del grafo la facciamo in base al suo tipo(sparso o denso come già visto ad algortmi)
+
+a partire dalla matrice di adiacenza posso definire una stringa chiamata stringa di adiacenza(ottenuta concatenando le righe o la parte triangolare superiore nel caso di archi indirezionato), le stringhe che possiamo ottenere sono le permutazioni dei nodi(con arco o no, quindi qualcosa di particolare non so calcolarla in questo momento, ma se non mi sbaglio è il fattoriale dato che sono le permutazioni,solo che ci sono elementi ripetuti quindi non saprei) , scegliamo la forma canonica(scegiamo la stringa che dia il numero più piccolo o più grande), se due grafi sono isomorfi allora avranno la stessa forma canonica.
+un sottografo frequente potrebbe essere banale(collegato al concetto di significatività statistica) 
+creiamo un database di grafi random(creiamo k database in modo iterativo), calcoliamo il supporto del sottografo di riferimento in ciascuno dei k database di background, al termine di questo passo si ottiene una distribuzione di probabilità dei valori di X
+calcoliamo la prob di osservare un supporto X maggiore o uguale al supporto, questa probabilità è il p-value.
+se il p-value è minore di una soglia, allora S è significativo come sottografo frequente.(in pratica l'ipotesi nulla è che il modello random abbia un supporto maggiore o uguale a quello del grafo normale)
+
+algoritmo di edge swapping(per la creazione di un grafo random a partire da un grafo G), in pratica swappiamo gli edge, con questo algoritmo cerchiamo di mantenere il grado dei nodi 
+
+ALGORITMO FSG:
+la strategia è BFS(di fatto implementa l'apriori).
+generiamo i candidati
+usiamo la forma canonica per la creazione di core(matchando le stringhe)
+riguardare inverted list per ottimizzazioni(da quel che ho capito un sottografo di n nodi è presente solo se i suoi sottografi n-1 sono presenti)
+con il pruning filtriamo i grafi che ci interessano, cioè solo i grafi per cui valgono quelle regole
+
+ALGORITMO GSPAN:
+gspan non di basa sull'apriori, si basa sul dfs, i sottografi vengono rappresentati tramite dfs code(la parte del calcolo non l'ho capita molto bene, mi sembrava simile all'ordinamento topologico ma non saprei dopo aver letto le varie definizioni)
+
+
+
+altro problema è la frequenza di sottografi nello stesso grafo(mining a singolo grafo). con la regola apriori bisogna stare attento  perchè possiamo avere grafi più grandi formati da sotto grafi che hanno una frequenza maggiore rispetto ai sottografi di cui sono formati(teoricamente non è ammesso dall'apriori).
+varie strategie di ricerca dei sottografi(nelle slide perchè mi secca scrivere e voglio sentire)
