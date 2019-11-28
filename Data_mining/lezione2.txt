@@ -1,0 +1,52 @@
+calcolo delle probabilità ce lo fara giovanni micale, insieme a clustering ed analisi dei grafi.
+concetti di base del calcolo delle probabilità:
+	un evento è qualcosa che avviene o non avviene nel momento in cui un esperimento viene eseguito, 
+	se vogliamo quantificare, dobbiamo utilizzare notazioni matematiche ed introdurre delle misure, la variabile aleatoria è una quantità numerica randomica in un range che descrive un possibile esito di un esperimento, variabili aleatorie continue e discrete.
+variabili discrete:
+	variabili categoriali
+	variabili booleane
+	variabili numeriche
+la probabilità è n valore numerico che associamo ad una variabile aleatoria e ad un valore nel suo range
+una distribuzione di probabilità è un insieme di tutte le possibili probabilità per ogni variabile aleatoria?
+la distribuzione di probabilità cumulativa è l'insieme delle probabilità che la variabile aleatoria assuma valori minori o uguali ad un valore nel range(sempre crescente)
+nel continuo la distribuzione di probabilità diventa densità di probabilità, cioè piuttosto che riferirsi a singoli valori, si riferisce ad intervalli di valori(densità perchè si vanno a contare i punti che ci sono nell'intervallo)
+con data mining solitamente non faremo mai riferimento ad una singola variabile, quindi le nostre probabilità dovranno essere su più variabili
+probabilità intersezione e probabilità unione
+date due variabili possiamo definire la distribuzione probabilità congiunta
+per prendere la distribuzione su una singola variabile avendo la distribuzione congiunta dobbiamo usare la distribuzione marginale, cioè marginalizzare una delle due variabili per vedere la distribuzione solo di una
+il teorema di bayes è importante perchè associa valori futuri a valori passati.
+combinazione di variabili
+entropia misura quanto è difficile predire il vaolore di una variabile avente una certa distribuzione(base due perchè siamo informatici)
+covarianza per pià variabili, andiamo a vedere quanto le due variabili varino assieme, quanto siano correlate, per più di due variabili andiamo a prendere la matrice di covarianza, i cui elementi sono le covarianze tra tutte le coppie, 
+la correlazione è legata alla covarianza, ed alle deviazioni standard delle due variabili( indice di Pearson), il caso complicato del risultato è quando l'indice è 0, non significa nulla
+la matrice di correlazione per più variabili, valla a guardare
+entropia condizionale per capire quanto sia difficile predire il valore di una variabile dato il valore di una seconda variabile
+entropia condizionale nulla se riesco a predire x da y senza problemi?
+entropia relativa misura il grado di dissimilarità tra due distribuzioni, 
+mutual information, molto simile all'entropia condizionale, ci dice quanta informazione le due variabili condividono, se l'entropia è zero, la mutual information è massima, cioè riesco a predire il valore di una variabile perfettamente da un'altra variabile, e viceversa. Se invece l'entropia è massima, allora la mutual information è minima, cioè le variabili condividono pochissimo.
+per due variabili indipendenti ho mutual information = 0;
+se Y è definita in funzione di X o viceversa, mutual information massima
+vai a guardare il diagramma di venn che mette a confronto entropia e mutual information
+ Bernoulli, due possibili esiti ad un esperimento, allora la variabile aleatoria Y potrà assumere solo due valori (Indicator ?)
+ogni lancio di una monetina è indipendente dai lanci che sono stati fatti in passato, la variabile Y di interesse pari al numero di successi ottenuti segue una distribuzione binomiale
+il coefficente binomiale perchè dobbiamo prendere tutte le permutazioni possibili per poter costruire la distribuzione binomiale
+ipotesi nulla: non sto assumendo nulla sulle sequenze, sono dati considerati completamente randomica
+si sviluppa un modello di statistica e porbabilistica in modo da vedere se esistono dei pattern ripetuti, in modo da formulare nuove ipotesi, statistica ed altro inferenziale
+per la media e la varianza di distribuzioni binomiali sfruttiamo i risultati delle medie e delle varianze delle some di distribuzioni
+per 1/2, la monetina non è truccata e la distribuzione binomiale assumera un andamento gaussiano(a campana) con skewness 0
+per altri valori allora la monetina dovrebbe essere teoricamente truccata
+distribuzione ipergeometrica, rapporto tra casi favorevoli e possibili, estrazione senza reimissione, altrimenti sarebbe binomiale
+distribuzione uniforme(tipo entropia massima con eventi equiprobabili) tutti i valori hanno la stessa probabilità di essere osservati, equiprobabili
+distribuzione geometrica, il numero di esperimenti non è fissato, trials indipendenti, situazione simile a distribuzione binomiale , y successi degl'esperimenti prima di un fallimento, consecutivi, specie match all'interno di due sequenze, probabilità di trovare una sequenza di lunghezza y
+distribuzione di Poisson, molto simile alla binomiale, data da quella formula, la media di questa distribuzione è lambda, la distribuzione binomiale viene approssimata dalla poisson, specialmente per n molto grande(molte osservazioni)
+distribuzioni multinomiale(più variabili della binomiale, più esperimenti da vedere, più eventi da osservare e contestualizzare)
+
+
+distribuzioni continue:
+densità uniforme, distribuzione normale(gaussiana), spesso si assume che i dati abbiano una distribuzione gaussiana, o meglio un andamento simile.
+si usa molto la normale perchè possiamo associare alla densità direttamente la media e la varianza, cambiando la media trasliamo il grafico, la variazna cambia la forma della campana, varianza alta => curva più piatta
+distribuzione normale standard, media =0 , varianza è 1, particolarmente importante perchè è possibile fare molte operazioni semplicemente e possiede certe proprietà, il processo di cambiamento di una distribuzione in una standard si chiama standardizzazione
+normale standard particolarmente importante quando dobbiamo analizzare dei valori in un certo intervallo.
+ovviamente, la normale è legata alla binomiale.
+distribuzione esponenziale, specialmente utilizzata nelle simulazioni, specie ciclo di vita di qualcosa.
+distribuzione chi-quadro, molto importante per i test statistici(test per un modello nullo), n gradi di libertà

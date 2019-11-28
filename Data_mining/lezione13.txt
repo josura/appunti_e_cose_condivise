@@ -1,0 +1,45 @@
+RETI NEURALI:
+
+con turing abbiamo le prime definizioni di AI, 1950 more or less
+non esistono soltanto supervised(risultati noti, responce alla mano) e unsupervised(risultati non disponibili), esiste anche il reinforcement learning(è un problema principalmente di intelligenza artificiale, come nei giochi, esempio del labirinto come sequenza di azioni che massimizza una funzione di guadagno che definiamo noi, massimizziamo il guadagno e minimizziamo la perdita, quindi una serie di azioni che posso compiere, ed una funzione da massimizzare)
+problema di ottimizzazione quindi, il machine learning è un problema di ottimizzazione, quindi vincoli della rappresentazione del problema, funzione da ottimizzare, algoritmo di ottimizzazione.
+pulire i dati da tutto il rumore.
+parliamo di regressione e classificazione, con la regressione lineare costruiamo l'iperpiano che ci permette di predire i valori minimizzando la funzione di errore(con gradient descent).
+si inizia con pesi distribuiti secondo una normale, e si calcola il gradiente, si aggiornano i pesi con i learning rate(calcolati tramite il gradiente).
+con la classificazione, regressione logistica per cose molto semplici, usiamo la sigmoide, restituiamo un output compreso tra 0 e 1, quello che abbiamo fatto noi sono stati i perceptron, ma i sigmoid sono una cosa migliore.
+dati di input e di output come distribuzioni di probabilità, quindi ci possiamo calcolare la distanza tra due distribuzioni di probabilità usando la cross-entropy, minimizziamola(0 per risultati perfetti), quindi anche in questo caso possiamo usare il gradient descent, aggiorniamo i pesi e abbiamo più o meno la stessa funzione(regressione logistica)
+ci sta facendo la comparision, cambiano solo il modo in cui si calcolano e si predicono, il gradient descent resta comunque lo stesso, vai a rivedere perchè quella cosa che mi sembra la activation function.
+
+ArtificialNeuralNetworks are similar in regression and classification, quindi unifichiamo e notiamo una somiglianza con i perceptron.
+ci sta facendo vedere l'idea dietro, cioè ispirazione con i neuroni veri, aiha.
+i neuroni artificiali sono formati da vari input a cui sono associati dei pesi, un bias(simil intercetta), ed uno o più output con una activation function(sigmoide, lineare e rectified RELU(ci sono altre specie tangente etc..), basta che non siano decrescenti) inoltre devono soddisfare le proprietà viste nelle slide
+come si fanno a fare layer, i neuroni sono organizzati in layer, cosa si intende con deep learning, quando abbiamo hidden layer parliamo di deep learning, con solo input e output abbiamo shallow network, quando abbiamo un grafo senza cicli abbiamo una feed-forward network, una feed-forward con tutti i neuroni di k-1 sono connessi a k è una rete densa, il network è definito da una matrice di pesi per ogni layer.
+i pesi sono i parametri, i numeri di layer e di neuroni per layer sono hyper-parameters.
+
+nel caso di immagini è molto utilizzata la convolutional network, in pratica si applica un layer che applica una convoluzione nei segnali in input, il kernel è appreso dai dati, quindi i kernel potrebbero essere visti come pesi da trovare per aumentare l'accuratezza del nostro modello di rete neurale. questo tipo di reti si usa per la feature extraction con classification finale nei layer finali.
+
+altre reti neurali interessanti sono le recurrent networks, dove abbiamo cicli, sono molto difficili da addestrare, non si sa se minimizzano, ma sono più realistiche dal punto di vista biologico
+
+per vedere molti tipi di reti neurali vai a guardare sulle slide e su internet.
+
+reti usate per la dimensionality reduction, auto encoder(prendono in input tutti i dati e restituiscono i dati con dimensioni minori), tramite embedding riduciamo la dimensione, dobbiamo comunque minimizzare la funzione di errore, variation auto-encoder per l'evoluzione(ci va a calcolare la distribuzione dei dati), negli auto-encoder l'output effettivo è il layer in mezzo, dall'input verso l'embedding è l'encoder, dall'embedding verso l'output è il decoder, usati per tantissime cose, oltre che per la dimensionality reduction, anche per il denoising.
+ognuna di quei generi di reti hanno le loro caratteristiche e pregi e difetti, ma non abbiamo il tempo quindi le farò in futuro.
+con il layer soft max possiamo calcolare la probabilità di appartenere ad una classe rispetto alle altre(senza softmax solo per due classi), quindi funzione softmax che prendendo un vettore in input restituisce in output il vettore normalizzato per le probabilità
+
+RELU= stepwise regression:
+fit curves using linear combination of basis functions
+come avviene il training della rete neurale, un metodo è la forward propagation, partiamo dagli input e costruiamo i pesi.
+un'altro metodo molto usato è la backword propagation, minimizziamo l'errore, ed aggiustiamo i pesi partendo dall'output, calcolando gli errori, minimizzandoli facendo variare i pesi, procedendo in questo modo per ogni layer(calcolo errore per ogni neurone del layer e aggiustare la matrice dei pesi di conseguenza)
+con troppe connessioni tra neuroni(troppi pesi) la rete tende ad overfittare.
+per aumentare l'accuracy mantenendo i pesi abbastanza piccoli usiamo la regolarizzazione, con quelle funzioni definite nelle slide.
+dopo la costruzione della rete neurale prendo dei pesi casuali(definiti da un iperparametro) e li setto a 0, non ho capito il perchè.
+ogni round di back-propagation viene chiamata epoca(epoch), per settare il learning rate bisogna considerare molti fattori, bisogna comunque trovare il valore migliore.
+
+come addestriamo una rete neurale, attenzione alle interazioni tra training e test set.
+usiamo dei batch e ripetiamo l'aggiornamento per ogni batch testando la rete ad ogni passo per il test set, si continua finchè non vediamo più un guadagno in accuratezza(la funzione di errore non si minimizza più), quindi ad ogni epoca dobbiamo ripetere questo procedimento, bisogna comunque fermare il training della rete dopo aver visto il tasso di errore ed aver considerato il margine di improvement, quindi attenzione all'overtraining.
+Il design delle reti neurali è completamente arbitrario, acquisiamo con l'esperienza e con la conoscenza la capacità della costruzione di una rete che sia adatta a classificare quello che vogliamo, più layer aggiungiamo più aumentiamo la dimensionalità delle regioni di classificazione(cos' sembra dalle figure nelle slide).
+
+
+PROBLEMA DELL'INTERPRETABILITA'
+come spieghiamo le decisioni della rete, come facciamo a capire il perchè della predizione,
+ci sono molti algoritmi per carpire il senso delle decisioni , ex SHAP

@@ -1,0 +1,32 @@
+ci spostiamo sui grafi come argomento di discussione, abbiamo già parlato di grafi con le reti neurali
+
+RETI E MODELLI RANDOM:
+un grafo nasce dal concetto di sistema complesso, complessi nel senso che sono grandi in dimensioni e le interazioni tra le varie entità sono complesse e difficili da comprendere, e sono molte.
+ci sta facendo come esempio la società okk, infrastrutture di comunicazione, il cervello umano.
+
+le reti(grafi) sono il meodello matematico che ci permette di rappresentare un modello complesso(codificare)
+
+normale G={V,E}
+
+la branca della scienza che si occupa di analizzare le reti è la network science(disciplina molto giovane dato che i big data sono arrivati da molto poco)
+
+normali definizioni e descrizioni di un grafo(già fatte ad algoritmi)
+se (a,b)C E allora i nodi si diranno adiacenti
+grafi diretti ed indiretti, pesati e etichettati(ai nodi e agli archi possono essere associate informazioni aggiuntive legate alla semantica(pesati con valori numerici, etichettati con valori qualitativi))
+grafi bipartiti(due tipi di nodi, gli archi collegano solo nodi di un tipo all'altro tipo),proiezioni sulle partizioni se due nodi della stessa partizione sono collegati ad un adiacente(uno solo?)
+esempio applicazione di proiezioni su grafi bipartiti con geni collegati a malattie(DISEASOME).
+grafi multipartiti con più livelli di partizioni,
+grafi completi(CLIQUE) vabeh
+grafo regolare(ogni nodo ha lo stesso grado, stesso numero di archi entranti|uscenti nel qual caso parliamo di grado uscenti , entranti, e totali)
+grado medio vabeh
+
+una cosa che solitamente si misura è la distribuzione dei gradi, che è una distribuzione di probabilità, dove Pk rappresenta la probabilità che un nodo random della rete abbia grado k.
+la distribuzione dei gradiè la proprietà più importante della rete(per data analist almeno)
+definizione di cammino come sequenza di archi vabeh.definizione cammino minimo, diametro, ciclo, un grafo aciclico indirezionato è un albero, aciclico diretto è un DAG
+nodi connessi se esiste un cammino, grafo connesso se tutte le  coppie di nodi sono connesse, un grafo disconnesso può essere partizionato nelle sue componenti connesse.
+nel caso di grafo orientato il concetto di connessione si sdoppia(coppia di nodi connessi forte se esiste il cammino diretto, connessi deboli se andando contro l'orientamento degli archi esiste il cammino)
+
+
+quantità molto importante è il COEFFICENTE DI CLUSTERING, che misura la probabilità che due nodi adiacenti ad un altro nodo siano adiacenti tra di loro.
+in pratica questo coefficente misura la densità locale della rete.
+possiamo definire il coefficente di clustering anche sulla rete, come la media dei coefficenti su tutti i nodi della rete(medio), o come globale(numero di triangoli, cioè cliques con tre nodi, fratto il numero di triple interconnesse tra di loro)

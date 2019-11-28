@@ -1,0 +1,74 @@
+oggi parliamo di SWM,
+
+se i dati sono linearmente separabili(esistenza dell'iperpiano separatore), SWM trova il piano separatore.
+se non esiste il piano separatore(i piani non sono linearmente separabili), SWM effettua un mapping dei dati in uno spazio in più dimensioni, cercando di nuovo di trovare l'iperpiano
+
+perchè si chiamano in quel modo, l'iperpiano che troviamo lo troviamo usando vettori di supporto(punti di frontiera teoricamente) e i margini(distanze tra i vettori e l'iperpiano)
+la ricerca degli iperpiani produce infiniti risultati, quello che cerchiamo è quello con un margine più grande tra i dati( tecnica MMH(maximum marginal hyperplane))
+
+altri iperpiani importanti sono H1 e H2(vedi le slide),sfruttiamo i vettori di supporto per costruirli(y può assumere valore -1 e +1), la distanza tra i due piani è data da 2/||w|| dove w è il vettore dei pesi, 
+bisogna massimizzare il margine, quindi minimizzare la norma di w
+abbiamo un problema di ottimizzazione da risolvere
+
+la considerazione secondo cui nessun punto deve essere all'interno dei due piani è una considerazione detta "hard margin", porta a soluzioni migliori ma è più difficile da definire e da trovare, inoltre potrebbe portare ad overfitting
+di contro "soft margin"(abbiamo una tolleranza che dovrebbe essere la distanza da H1 o H2) è più facile da trovare ma è meno accurato
+
+con il soft margin introduciamo un tradeoff tra a larghezza del margine e il numero di violazioni tollerate, introduciamo lambda per minimizzare l'effetto?
+
+usiamo il duale lagrangiano per trovare i pesi(i fattori che servono per calcolare i pesi)?
+
+per aumentare le dimensioni usiamo vettori che provengono dai vecchi vettori(tipo funzioni vettoriali)
+
+il duale è un po' troppo difficile da risolvere(dispendioso a causa di quel prodotto scalare), usiamo le funzioni kernel(quelle che soddisfano quella relazione) per diminuire la complessità
+SWM potrebbe classificare più di due classi(a passi reiterando SWM sulle sottoclassi)
+
+SWM si presta bene pure a classificare dati con alta dimensionalità, per come è stato costruito SVM è anche meno soggetto ad overfitting
+
+
+APPRENDIMENTO LAZY:
+tipologia di classificatori un po' diversi da quelli visti, 
+
+apprendimento eager: dal training set subito il modello
+
+apprendimento lazy: la funzione di classifficazione sono al momento dell'arrivo del nuovo dato, tutto viene rimandato al momento opportuno.
+
+per i metodi di apprendimento lazy abbiamo un tempo di training molto veloce, ma una predizione con un tempo più alto rispetto agli eager.
+
+un esempio di algoritmo lazy è l'algoritmo k-nearest-neighbor, assegno la classe più ricorrente(o una media) nell'intorno del nostro predictor(di raggio k, no i k elementi più vicini)
+kNN basato su distanza o su valori continui(usando intervalli)
+
+
+PREDIZIONE:
+
+simile alla classificazione perchè costruiamo un modello a partire dal training set, diversa perchè prediciamo valori continui(funzioni a valori continui)
+la tecnica di predizione più importante è la regressione(modelliamo la relazione tra una o più variabili indipendenti(predictors) ed una variabile dipendente(response))
+
+per la regressione lineare usiamo il metodo dei minimi quadrati per trovare i parametri.
+minimizziamo gli errori residui
+
+se la funzione non è lineare abbiamo certi casi in cui possiamo convertirla in una funzione lineare(come nel caso di polinomi)
+
+APPRENDIMENTO ENSEMBLE:
+combinare due o più modelli, ipotesi multiple in modo da ottenere una soluzione migliore
+
+bootstrap me lo devo rivedere
+
+random forest: usiamo più alberi decisionali, li combiniamo, utilizza la tecnica bootstrap, prendiamo un sottoinsieme random di tuple,  inoltre prendiamo pure un sottoinsieme random di attributi(per esplorare uno spazio di ricerca più ampio, inoltre eliminiamo(potremmo) la dipendenza da attributi che non centrano poi tanto)
+si analizzano i vari alberi decisionali e si combinano
+
+come validiamo un classificatore, accuratezza, ed error rate collegato
+una cosa che possiamo fare a priori è la matrice di confusione(diagonale diversa da 0 e diagonale superiore ed inferiore tendente a 0)
+
+true positive e true negative sono quelle che vorremmo avere alte
+false "" false "" sono quelle che vorremmo avere molto basse
+tutte quelle misure sulle slide
+
+accuratezza 1 e da diffidare(bias mancato  o overfitting)
+
+possiamo stablire una soglia discriminativa per in nostri classificatori binari
+
+curva ROC, dipendente dalla soglia, lo usiamo sia per capire dei valori buoni della soglia, sia per vedere l'accuratezza(?) del nostro classificatore
+curva PR simil ROC
+per l'accuratezza vera del classificatore si fa riferimento all'area al di sotto della curva ROC o PR, AUC=1 è il classificatore perfetto
+
+metodi che usano direttamente il set di dati per valutare l'accuratezza del classificatore sono holdout e kfold crossvalidation
