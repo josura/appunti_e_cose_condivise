@@ -1,4 +1,0 @@
-kmeans usa la distanza media tra tutti i punti al quadrato per valutare l'ottimalità della fine dell'algoritmo(perchè l'algoritmo viene ripetuto n volte rispetto a k punti random probabilmente appartenenti al datasets)
-dobbiamo stimare il valore di k, quindi usiamo quello di cui avevamo discusso nella scorsa lezione, cioè teorica ricerca binaria
-
-sempre per valutare un clustering possiamo usare un coefficente di silhouette, più alto è più i dati appartengono ai dati a cui sono stati assegnati
