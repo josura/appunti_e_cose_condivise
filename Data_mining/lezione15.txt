@@ -4,16 +4,17 @@ betweennes centrality basata sul concetto di betweennes di un nodo
 dato un nodo e due nodi qualsiasi 
 
 closeness, basato sulla distanza dei nodi, vicinanza
-dato un nodo si calcola la lunghezza media dal nodo di tutti i cammini e si calcola l'inverso(valore basso o alto non l'ho capito, rivedilo)
+dato un nodo si calcola la lunghezza media dal nodo di tutti i cammini(media dei cammini minimi dal nodo a tutti gli altri) e si calcola l'inverso(valore basso o alto non l'ho capito, rivedilo, in pratica si vede il "tempo" che passa dall'informazione inviata e quella ricevuta, la velocità media con cui arriva agli altri nodi del grafo, più è alto il valore, più velocemente arriveranno le infomazioni se partono da quel nodo)
 
-pageRank centrality, lo usa google, la centralità si basa sul pagerannk del nodo, il grado del nodo viene legato al grado dei nodi vicini(formula sulle slide)
+pageRank centrality, lo usa google, la centralità si basa sul pagerannk del nodo, il grado del nodo viene legato al grado dei nodi vicini(formula sulle slide), si parte dagli stessi tesoretti
 un nodo riceve l'importanza dei nodi adiacenti(tesoretto), ognuno distribuisce in parti uguali il suo tesoretto, algoritmo a passi, più iterazioni.
 importante per le pagine web(valuta l'importanza delle pagine web).
+arriverà mai a convergenza, bisogna trovare il numero giusto di iterazioni in modo da non sprecare cicli.
 
 
 MODELLI RANDOM:
-modellare le proprietà della rete costruendo modelli random, le reti reali non sono perfettamente strutturate, ma posseggono , almeno in apparenza, una certa randomness.
-this type of models are generatives, they grant the generation of networks with certain characteristics
+modellare le proprietà della rete costruendo modelli random, le reti reali non sono perfettamente strutturate(tranne i reticoli, cioè grafi con una struttura ben definita e ripetuta), ma posseggono , almeno in apparenza, una certa randomness.
+these types of models are generatives, they grant the generation of networks with certain characteristics
 
 modello di erdos renyi:
 da un insieme di nodi isolati, da due nodi distinti aggiungiamo un arco con probabilità p(implementazione con generazione numero random tra 0 e 1, >=p non si aggiunge un nodo)
@@ -24,8 +25,8 @@ la probabilità che un nodo abbia grado k ,  la distribuzioe dei gradi di un gra
 il grado medio è ovviamente p(N-1) come teoricamente visto a mat discreta, ovviamente l'assegnazione di un edge è un evento indipendente da altri assegnamenti
 la binomiale si può approssimare abbastanza bene con la distribuzione di poisson(con n molto grande)
 
-la distanza media dei nodi della rete è quella cosa, abbiamo il fenomeno small-world, ci vogliono pochi passi per raggiungere un qualsiasi nodo della rete, il valore sotto non me lo ricordo
-il numero atteso di archi dato da quella formula, il coefficente di clustering si rivela essere p.
+la distanza media dei nodi della rete è quella cosa(ln del numero nodi sul ln del grado medio), abbiamo il fenomeno small-world, ci vogliono pochi passi per raggiungere un qualsiasi nodo della rete, il valore sotto indica che più densa è la rete(grado medio più alto), più piccola è la distanza tra i nodi.
+il numero atteso di archi dato da quella formula(numero massimo di archi in un grafo formato da Kn nodi, dove Kn è il grado del nodo che stiamo considerando, tutto per la probabilità che un nodo abbia grado k), il coefficente di clustering si rivela essere p(numero di archi possibili con Kn nodi,fratto tutti gli archi), comunque se ci pensi bene ci sta giorgio, se lo rivedi ricordati che effettivamente è ragionevole.
 
 il confronto nelle slide. 
 l'unica proprietà che viene effettivamente riprodotta è la small-world
@@ -49,4 +50,5 @@ proposto subito dopo il modello small-world,
 le due proprietà sopra menzionate sono cardini di questo modello.
 si creà una rete random iniziale, ogni nodo con grado almeno 1
 aggiungo un nuovo nodo della rete e lo collego a m<=m0 nodi esistenti della rete, probabilità p che il nuovo nodo si colleghi ad un nodo
+i meccanismi per cui un nodo diventa un hub sono random, ovviamente nodi che entrano dopo sono più sfavoriti(richer get even more richer)
 i meccanismi per cui un nodo diventa un hub sono random, ovviamente nodi che entrano dopo sono più sfavoriti(richer get even more richer)

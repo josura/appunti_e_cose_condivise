@@ -3,30 +3,41 @@ ci spostiamo sui grafi come argomento di discussione, abbiamo già parlato di gr
 RETI E MODELLI RANDOM:
 un grafo nasce dal concetto di sistema complesso, complessi nel senso che sono grandi in dimensioni e le interazioni tra le varie entità sono complesse e difficili da comprendere, e sono molte.
 ci sta facendo come esempio la società okk, infrastrutture di comunicazione, il cervello umano.
+sistemi complessi proprio per la difficolta delle relazioni tra i vari componenti del sistema
 
 le reti(grafi) sono il meodello matematico che ci permette di rappresentare un modello complesso(codificare)
 
-normale G={V,E}
+normale G={V,E}   V nodi e E archi, al massimo n(n-1)/2
+i vertici rappresentano gli elementi, gli archi le relazioni tra gli elementi
 
-la branca della scienza che si occupa di analizzare le reti è la network science(disciplina molto giovane dato che i big data sono arrivati da molto poco)
+la branca della scienza che si occupa di analizzare le reti è la network science(disciplina molto giovane dato che i big data sono arrivati da molto poco), per comprendere e studiare i caratteri delle reti(comportamento dei sistemi complessi che cerchiamo ad analizzare)
 
 normali definizioni e descrizioni di un grafo(già fatte ad algoritmi)
 se (a,b)C E allora i nodi si diranno adiacenti
 grafi diretti ed indiretti, pesati e etichettati(ai nodi e agli archi possono essere associate informazioni aggiuntive legate alla semantica(pesati con valori numerici, etichettati con valori qualitativi))
-grafi bipartiti(due tipi di nodi, gli archi collegano solo nodi di un tipo all'altro tipo),proiezioni sulle partizioni se due nodi della stessa partizione sono collegati ad un adiacente(uno solo?)
+grafi bipartiti(due tipi di nodi, gli archi collegano solo nodi di un tipo all'altro tipo, non esistono nodi dello stesso tipo che siano adiacenti),proiezioni sulle partizioni se due nodi della stessa partizione sono collegati ad un adiacente(uno solo, si teoricamente, solo uno in modo che siano bipartiti)
 esempio applicazione di proiezioni su grafi bipartiti con geni collegati a malattie(DISEASOME).
-grafi multipartiti con più livelli di partizioni,
-grafi completi(CLIQUE) vabeh
+grafi multipartiti con più livelli di partizioni,più insiemi disgiunti di dati
+grafi completi(CLIQUE) vabeh, ogni nodo collegato ad ogni altro nodo appartenente al grafo(n*(n-1)/2  archi totali)
 grafo regolare(ogni nodo ha lo stesso grado, stesso numero di archi entranti|uscenti nel qual caso parliamo di grado uscenti , entranti, e totali)
-grado medio vabeh
+grado medio vabeh, numero di archi, indirezionati , entranti o uscenti(numero di nodi adiacenti con differenza tra nodi padre e nodi figli), grado medio come |E|/|V|
 
 una cosa che solitamente si misura è la distribuzione dei gradi, che è una distribuzione di probabilità, dove Pk rappresenta la probabilità che un nodo random della rete abbia grado k.
-la distribuzione dei gradiè la proprietà più importante della rete(per data analist almeno)
-definizione di cammino come sequenza di archi vabeh.definizione cammino minimo, diametro, ciclo, un grafo aciclico indirezionato è un albero, aciclico diretto è un DAG
+la distribuzione dei gradi è la proprietà più importante della rete(per data analist almeno)
+definizione di cammino come sequenza di archi vabeh.definizione cammino minimo,distanza tra due nodi(sempre cammino minimo), diametro, ciclo, un grafo aciclico indirezionato è un albero, aciclico diretto è un DAG
 nodi connessi se esiste un cammino, grafo connesso se tutte le  coppie di nodi sono connesse, un grafo disconnesso può essere partizionato nelle sue componenti connesse.
 nel caso di grafo orientato il concetto di connessione si sdoppia(coppia di nodi connessi forte se esiste il cammino diretto, connessi deboli se andando contro l'orientamento degli archi esiste il cammino)
 
 
-quantità molto importante è il COEFFICENTE DI CLUSTERING, che misura la probabilità che due nodi adiacenti ad un altro nodo siano adiacenti tra di loro.
+quantità molto importante è il COEFFICENTE DI CLUSTERING, che misura quanto due nodi adiacenti ad un altro nodo(nodo per cui stiamo calcolando il coefficente) siano adiacenti tra di loro.
 in pratica questo coefficente misura la densità locale della rete.
 possiamo definire il coefficente di clustering anche sulla rete, come la media dei coefficenti su tutti i nodi della rete(medio), o come globale(numero di triangoli, cioè cliques con tre nodi, fratto il numero di triple interconnesse tra di loro)
+
+CENTRALITA' DI UN NODO:	
+misura dell'importanza di un nodo all'interno di una rete, esistono diverse misure(degree, betweenness, closeness, pagerank)
+
+la degree centrality è la misura più semplice di centralità, si va a tenere conto del grado di un nodo, più è alto il grado del nodo più sarà importante
+
+betweenness, basata sul concetto a cui fa riferimento, la betweenness è la frazione di cammini minimi tra due nodi qualsiasi del grafo che passano per il nodo per cui stiamo calcolando la betweenness, cioè andiamo a sommare tutte le frazioni di cammini minimi per ogni coppia di nodi appartenential grafo.
+Secondo la definizione di betweenness un nodo è importante se si trova in molti cammini(è il centro di comunicazione tra molti nodi)
+
