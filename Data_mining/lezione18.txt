@@ -1,0 +1,51 @@
+catene di markov e le hidden markov model:
+
+una catena di markov è un oggetto matematico, è definito da una tripla di elementi, (insieme di stati, probabilità iniziali, probabilità di transizione)
+
+le probabilità di transizione sono le probabilità di trovare un arco tra un nodo ed un altro,
+le catene di markov servono per rappresentare un istante rispetto ad un insieme di eventi, con cambiamenti di stato ed altro(da rivedere).
+
+nell'esempio meteo(ci troviamo in uno stato, sole, all'istante di tempo successivo posso essere in uno stato qualsiasi di quelli collegati con le probabilità specificate)
+
+memoria di primo ordine perchè ricordiamo solo lo stato precedente(quanti stati precedenti dobbiamo considerare nelle probabilità) memory less in caso 0?
+
+sequenza di eventi come prodotto di probabilità(eventi teoricamente indipendenti dagli stati nordine precedenti, stato precedente nel 1° ordine) 
+formula con produttoria degli stati precedenti
+
+la matrice di transizione che ci da le probabilità di transizione di stati ha diverse proprietà:
+la somma di una riga di probabilità di stati fa 1(devo andare in uno stato), questa proprietà rende la matrice una matrice stocastica
+
+possiamo vedere la catena di markov come un automa, generatore di simboli, le regole della generazione della stringa(n cammino determina una generazione di una stringa) vengono date dalla matrice di transizione
+moltiplicando la matrice di transizione per se stessa sto trovando tutte le combinazioni , la riga ci dice da dove parto come stato, e la colonna mi dice a che stato devo arrivare,
+per generalizzare, se vogliamo arrivare a uno stato t partendo da uno stato 0, eleviamo la matrice di transizione t volte e prendiamo il record che ci interessa
+
+se non 'partiamo da uno stato ben definito, usiamo le probabilità che ci vengono date dai dati(esempio coke pepsi 60 40, 60 * probcocapartendo da cocacola + 40 * probcocacola partendo da pepsi)
+
+distribuzione iniziale(distribuzione da cui si parte)
+distribuzione n esima= distribuzione iniziale*((matrice di transizione)^n)
+
+le catene di markov possono essere irriducibili(riducibili), tutti gli stati comunicano, la catena è una componente fortemente connessa
+
+le catene di markov aperiodiche, partendo uno stato s, minimo numero di passi per ritornare allo stato s ed avere una probabilità > 0, se il periodo è >1 allora lo stato s è detto periodico, come il grafo
+aperiodico se nessuno stato è periodico
+
+abbiamo fatto queste due definizioni perchè abbiamo quel teorema(la probabilità per stati avanzati rimane costante?)
+da una settimana alla settimana successiva i valori rimangono costanti, compreranno sempre la stessa bibità.
+
+questo significa che esiste una distribuzione stazionaria(la distribuzione degli stati converge?)
+
+
+
+HIDDEN MARKOV MODEL:
+estensione della catena di markov, nelle catene normali abbiamo la corrispondenza di stato e simbolo emesso univoca, in queste non sappiamo quale sia lo stato, sappiamo la sequenza di simboli(osservazioni), ogni stato nascosto può emettere un simbolo con una certa probabilità, 
+
+abbiamo molte cose, più complesso di quello normale, sappiamo la sequenza di osservazioni(simboli), per cui dobbiamo trovare la sequenza di stati che ha portato le osservazioni(probabilità maggiore di generare quei simboli in quella sequnza)
+ex, partendo da delle osservazioni(sequenza di giorni meteo, simboli collegati al dna?),
+vogliamo sapere quale è la probabilità della sequenza di osservazioni(dobbiamo considerare tutte le possibili combinazioni di stati, calcolare tutte le probabilità e prendere il massimo tra le probabilità considerate) 
+
+evaluation, decoding e learning
+evaluation, dato un modello(HMM),ed una sequenza, calcolare la probabilità della sequenza dato il modello
+decoding, dato il modello e la sequenza, la sequenza di stati che massimizza la probabilità di osservare la sequenza di stati e dati dato il modello.
+learning, trovare il modello che riesca a predire(? da rivedere)
+
+ 
