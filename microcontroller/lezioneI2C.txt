@@ -24,3 +24,11 @@ la parte software di I2C è molto più semplice, le funzioni della nostra librer
 
 I2C_init(porta,velocità), dove velocità è la clk speed.
 queste istruzioni ci permettono di far funzionare il microcontrollore solo come master, invece nelle specifiche della board è permesso pure il funzionamento da slave.
+
+
+
+scheda ST multifunzionale I2C
+molti sensori I2C, MEMS(micro electro mechanical system) miniaturizzata l'eletrronica e la meccanica, all'interno dei sensori sono presenti sensori meccanici che traducono fenomeni fisici in elettrici.
+nel datasheet del sensore I2C, in digital interfaces andiamo a vedere l'indirizzo, scopriamo che l'indirizzo di base non è stabilito fin dall'inizio, possiamo modificarlo in modo da evitare possibili conflitti(penultimo bit come 1 o 0, l'ultimo è per lettura o scrittura se ti ricordi) andando a vedere lo schema elettrico possiamo vedere che il jumper è in default a tensione alta, quindi penultimo bit a 1.
+ogni registro viene spiegato in maniera dettagliata, ma abbiamo bisogno di informazioni aggiuntive per capire, XL per accellerometro, G per gyroscopioTHS threshold di misura, INT interrupt di misura
+
