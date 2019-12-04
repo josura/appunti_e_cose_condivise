@@ -6,49 +6,55 @@ dato un nodo e due nodi qualsiasi
 closeness, basato sulla distanza dei nodi, vicinanza
 dato un nodo si calcola la lunghezza media dal nodo di tutti i cammini(media dei cammini minimi dal nodo a tutti gli altri) e si calcola l'inverso(valore basso o alto non l'ho capito, rivedilo, in pratica si vede il "tempo" che passa dall'informazione inviata e quella ricevuta, la velocità media con cui arriva agli altri nodi del grafo, più è alto il valore, più velocemente arriveranno le infomazioni se partono da quel nodo)
 
-pageRank centrality, lo usa google, la centralità si basa sul pagerannk del nodo, il grado del nodo viene legato al grado dei nodi vicini(formula sulle slide), si parte dagli stessi tesoretti
-un nodo riceve l'importanza dei nodi adiacenti(tesoretto), ognuno distribuisce in parti uguali il suo tesoretto, algoritmo a passi, più iterazioni.
+pageRank centrality, lo usa google, la centralità si basa sul pagerannk del nodo, il grado del nodo viene legato al grado dei nodi vicini(formula sulle slide), si parte dagli stessi tesoretti(stato iniziale dove tutti hanno gli stessi tesoretti, probabilmente 1 / numero di nodi)
+un nodo riceve l'importanza dei nodi adiacenti(tesoretto), ognuno distribuisce in parti uguali il suo tesoretto, algoritmo a passi, più iterazioni, prima o poi converge.
 importante per le pagine web(valuta l'importanza delle pagine web).
 arriverà mai a convergenza, bisogna trovare il numero giusto di iterazioni in modo da non sprecare cicli.
 
 
 MODELLI RANDOM:
+costruire dei modelli che possano mimare il comportamento delle reti reali, in modo da poter predire e formulare ipotesi sulla realtà basate su concetti formali. Questo tipo di modelli sono generativi, cioè permettono di generare reti con certe caratteristiche.
 modellare le proprietà della rete costruendo modelli random, le reti reali non sono perfettamente strutturate(tranne i reticoli, cioè grafi con una struttura ben definita e ripetuta), ma posseggono , almeno in apparenza, una certa randomness.
-these types of models are generatives, they grant the generation of networks with certain characteristics
 
 modello di erdos renyi:
-da un insieme di nodi isolati, da due nodi distinti aggiungiamo un arco con probabilità p(implementazione con generazione numero random tra 0 e 1, >=p non si aggiunge un nodo)
+da un insieme di nodi isolati(penso che intenda senza archi inizialmente, non connessi a nulla), da due nodi distinti(per ciascuna coppia di nodi) aggiungiamo un arco con probabilità p(implementazione con generazione numero random tra 0 e 1, >=p non si aggiunge un nodo)
 variante e G(N,L) ,funziona più o meno allo stesso modo, si scelgono due nodi presi randomicamente, li colleghiamo, iteriamo fino a quando non abbiamo L archi
+i due modelli(Erdos e variante) sono equivalenti tra di loro(anche se non capisco bene cosa significhi che sono equivalenti, generano lo stesso tipo di grafo con le stesse caratteristiche? si teoricamente)
 
 proprietà del grafo random:
-la probabilità che un nodo abbia grado k ,  la distribuzioe dei gradi di un grafo random è una distribuzione binomiale.
+analizziamo la distribuzione dei gradi, sappiamo che una coppia di nodi può avere una probabilità p di avere un arco che li interconnette, quindi la probabilità che un nodo sia collegato ad n nodi distinti è p^n
+la probabilità che non sia connesso a n nodi distinti è (1-p)^(N-n-1), il numero di modi in cui è possibile collegare k nodi ad un nodo tra tutti i nodi del grafo è la combinazione di N-1 posti in k simboli, quindi coefficente binomiale ,  la distribuzione dei gradi di un grafo random è una distribuzione binomiale.
 il grado medio è ovviamente p(N-1) come teoricamente visto a mat discreta, ovviamente l'assegnazione di un edge è un evento indipendente da altri assegnamenti
 la binomiale si può approssimare abbastanza bene con la distribuzione di poisson(con n molto grande)
+dato che la distribuzione dei gradi è binomiale, i nodi hanno più o meno grado simile(che si avvicina al grado medio), pochi nodi hanno un grado diverso o che si discosta molto dalla media.
 
 la distanza media dei nodi della rete è quella cosa(ln del numero nodi sul ln del grado medio), abbiamo il fenomeno small-world, ci vogliono pochi passi per raggiungere un qualsiasi nodo della rete, il valore sotto indica che più densa è la rete(grado medio più alto), più piccola è la distanza tra i nodi.
 il numero atteso di archi dato da quella formula(numero massimo di archi in un grafo formato da Kn nodi, dove Kn è il grado del nodo che stiamo considerando, tutto per la probabilità che un nodo abbia grado k), il coefficente di clustering si rivela essere p(numero di archi possibili con Kn nodi,fratto tutti gli archi), comunque se ci pensi bene ci sta giorgio, se lo rivedi ricordati che effettivamente è ragionevole.
 
 il confronto nelle slide. 
 l'unica proprietà che viene effettivamente riprodotta è la small-world
-il modello di watts-strogatz è un estensione del modello di erdos renyi, basato sul concetto di small-world, più basso è p, meno approssima la rete random, per p =1 abbiamo una rete random.
+una rete è small-world se la distanza media tra i nodi ha una dipendenza logaritmica rispetto al numero di nodi della rete
+
+il modello di watts-strogatz è un estensione del modello di erdos renyi, basato sul concetto di small-world("interpolazione" tra grafo regolare(nodi con lo stesso grado, alto coefficente di clustering) e grafo random(per lo small world)), più basso è p, meno approssima la rete random, per p =1 abbiamo una rete random.
 abbiamo tre parametri, p che è il parametro di rewind, d che mi dice a quanti nodi successivi devo collegare il nodo corrente(nodi disposti in cerchi come in figura), per ciascun arco, scambiamo i nodi destinazioni degli archi(a,b c,d diventa a,d c,b) con probabilità p, devono essere archi disgiunti.
+in pratica i immaginano i nodi disposti in cerchio, si collega ogni nodo con i d successivi, e poi con probabilità p per ogni arco , si scambia il nodo destinazione. più è alto l'indice di rewiring più il grafo sara random.
 la distribuzione dei gradi nella small-world non è propriamente una poisson, è bene approssimata però dalla distribuzione powerlaw, nella scala log log osserviamo una retta(se la rete è power-law dobbiamo osservarla)
 
 se la distribuzione dei gradi segue una power law chiamiamo la rete scale-free, caratterizzata dalla presenza di hub(nodi con alto grado), segue la regola di pareto(80/20), nodi con molte connessioni(hub), e nodi con poche connessioni(schifi)
-si chiamano scale-free perchè è assente una scala(ovvero un valore di riferimento).
+si chiamano scale-free perchè è assente una scala(ovvero un valore di riferimento), per stabilire il grado di un nodo random appartenente alla rete, in pratica non possiamo stimare molto bene il grado di un nodo della rete.
 una rete scale-free è una rete robusta, se va giù un nodo qualsiasi non importa così tanto(cosa che non succede nelle reti random, dato che tutti i nodi hanno lo stesso grado, abbiamo più problemi), però bisogna stabilire la sicurezza degli hub(dare più importanza a questi),
-per gamma <3 abbiamo una ultra-small-world, <2 regime anomalo.
+per gamma(esponente della power-law, che viene poi posto negativo per far risultare la power law decrescente) <3 u >2 abbiamo una ultra-small-world, <2 regime anomalo.
 
 siamo quindi alla ricerca di qualcosa di diverso da una rete random per modellare il nostro modello, cerchiamo una rete che sia scale-free.
 
 caratteristiche delle reti reali:
-crescità continua della rete, i nodi non sono fissati(no modello random)
-un nuovo nodo nella rete tende a legarsi a nodi più connessi.
+crescità della rete,crescità continua della rete, i nodi non sono fissati(no modello random)
+preferential attachment,un nuovo nodo nella rete tende a legarsi a nodi più connessi.
 
 MODELLO BARABASI-ALBERT:
-proposto subito dopo il modello small-world,
+proposto subito dopo il modello small-world,che significa sta frase giorgio, temporalmente, nelle spiegazioni, boh
 le due proprietà sopra menzionate sono cardini di questo modello.
 si creà una rete random iniziale, ogni nodo con grado almeno 1
-aggiungo un nuovo nodo della rete e lo collego a m<=m0 nodi esistenti della rete, probabilità p che il nuovo nodo si colleghi ad un nodo
+aggiungo un nuovo nodo della rete e lo collego a m<=m0 nodi esistenti della rete, probabilità p che il nuovo nodo si colleghi ad un nodo, dove p è l'importanza del nodo per certi versi, cioè con quanti nodi è già stato legato, più è importante un nodo, più sarà alta la probabilità che un nodo aggiunto nella rete abbia un arco che colleghi il nuovo nodo con il nodo importante
 i meccanismi per cui un nodo diventa un hub sono random, ovviamente nodi che entrano dopo sono più sfavoriti(richer get even more richer)
 i meccanismi per cui un nodo diventa un hub sono random, ovviamente nodi che entrano dopo sono più sfavoriti(richer get even more richer)
