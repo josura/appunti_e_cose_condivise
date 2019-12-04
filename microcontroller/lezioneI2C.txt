@@ -1,0 +1,26 @@
+per certi versi I2C è una pila protocolare con quasi tutti i livelli comuni alle pile protocollari(livello fisico e datalink e altro?)
+I2C è un protocollo di comunicazione, abbiamo un bus di comunicazione costruito per connettere circuiti integrati sulla stessa board.
+introdotto da phylips
+serviva un modo per far comunicare la cpu con i circuiti integrati, la UART è na periferica di comunicazione punto a punto, non va bene, 
+in I2C due fili, uno per i dati e uno per il clk, bus dove tutti sono collegati in parallelo, bus slave, solo un dispositivo ha il diritto di far partire le informazioni(il microcontrollore), tutti gli altri sono slave 
+il protocollo può essere implementato totalmente in hardware, 
+due resistenze collegate alle due linee SDA e SCL, le due linee sono in open-drain, consente di avere più uscite collegate assieme, dal punto di vista elettrico non posso collegare due uscite assieme perchè fornendo una corrente nello stesso filo tutto potrebbe danneggiarsi, le due resistenze servono a non rompere nulla, se un I2C non ci funziona, dobbiamo vedere se ci sono le resistenze di pull-up.
+
+essendo un protocollo di comunicazione punto tanti punti, abbiamo bisogno di indirizzi(base 7-bit ed esteso 10-bit, solitamente solo base viene utilizzato), ogni slave ha un indirizzo.
+ogni dispositivo risponde a due indirizzi secondo l'operazione da svolgere(lettura o scrittura)
+ogni dispositivo al suo interno ha una tabella di registri?
+abbiamo una map di memoria per questi registri nel microcontrollore?
+1)mandare la richiesta di scrittura ad un device slave
+2)ottenere l'indirizzo dove scrivere ?
+...
+
+dire con quale device voglio comunicare, dire cosa si vuole fare, ...
+
+start condition e stop condition, sui protocolli comuni delle reti abbiamo preambolo e dimensione del frame, il microcontroller è più semplice, non abbiamo bisogno di cose troppo complicate.
+un altro problema è l'ACK, in I2C viene gestito con un singolo bit, i colpi di clk non sono 8 come i bit trasmessi ma sono 9 per il clk,  il bit è 0 se il byte e stato ricevuto e confermato, se è 1 il byte non è stato acknoledgiato,
+il clk è trasmesso dal microcontrollore, lo consideriamo come unidirezionale, invece la linea dati è bidirezionale(master o slave spediscono dati),
+la transizione delle linee di dati possono avvenire solo a clk basso, tutta la logica implementativa è implementata tramite hardware, ma si può fare pure in software, 
+la parte software di I2C è molto più semplice, le funzioni della nostra libreria ci permettono di fare lettura e scrittura, o di un singolo valore o di un set di registri(buffer), in questa implementazione vengono implementate tutte le cose di teoria che stavamo vedendo prima.
+
+I2C_init(porta,velocità), dove velocità è la clk speed.
+queste istruzioni ci permettono di far funzionare il microcontrollore solo come master, invece nelle specifiche della board è permesso pure il funzionamento da slave.
