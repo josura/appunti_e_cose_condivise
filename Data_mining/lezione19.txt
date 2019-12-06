@@ -1,17 +1,23 @@
 continuiamo con le HMM:
 rispolverata dei quesiti principali(evaluation,decoding e learning)
+usa l'esempio del croupier, ci sta per la parte di decoding e learning, ma non capisco del modello di cui sta parlando, voleva prenderlo così ad esempio per far vedere cosa significava probabilmente.
 
 vediamo il problema della evaluation:
 dobbiamo produrre uno score che permetta di vedere la probabilità che la sequenza prodotta sia d'accordo con le predizioni
+ci riportiamo comunque alla probabilità delle markov chain, probabilità della sequenza di simboli di lunghezza n dati n stati precendenti, prob stato iniziale per la produttoria(si prende tutto dalle matrici di transizione e dal vettore di probabilità di generazione dei simboli(che in realtà sono più funzioni definite a partire dagli stati in cui si trovano che associano ad un simbolo una probabilità))
 
-probabilità forward per non dover considerare la prob marginale di tutti i cammini, 
+dobbiamo calcolare le probabilità della sequenza per ogni cammino e sommarle in stile marginale
+probabilità forward per non dover considerare la prob marginale di tutti i cammini(il numero di cammini possibili di stati sequenziali è esponenziale), in pratica la probabilità forward si calcola fissando uno stato ad un certo "istante".forse 
+
+in realtà non saprei dato che viene derivata in modo ricorsivo, cioe in realtà ancora una volta è veramente fissando uno stato ad un certo punto, solo che la definizione ricorsiva ci dice che partiamo dall'inizio fino ad arrivare al nodo fissato sommando tutte quelle probabilità(forward perchè partiamo dall'inizio con i vari passi induttivi di base sommati per dare la forward dei successivi)
+infatti se vai a guardare il coso visuale puoi vedere effettivamente che è così
 
 si ripresenta il concetto di trellis lattice(reticolo di stati), rappresentando i cammini che portano allo specifico stato cercato.
 
 questi algoritmi di fondo sono inerentemente dinamici(calcoliamo il valore nello stato t e lo usiamo per calcolare t+1, soluzioni parziali, suboptimal), nella costruzione del trellis infatti calcoliamo il valore dello stato k a tempo t
 
 Decoding:
-avendo il trellis, dobbiamo calcolare il cammino massimo ad ogni passo(in pratica dobbiamo prendere il massimo peso tra gli archi del trellis ), in questo modo abbiamo il cammino di stati(abbiamo decodificato e trovato la sequenza effettiva?), viterbi come in reti di calcolatori.
+avendo il trellis, dobbiamo calcolare il cammino massimo(che massimizza la probabilità) ad ogni passo(in pratica dobbiamo prendere il massimo peso tra gli archi del trellis ), in questo modo abbiamo il cammino di stati(abbiamo decodificato e trovato la sequenza effettiva?), viterbi come in reti di calcolatori.
 
 
 
@@ -28,3 +34,5 @@ rivedere le probabilità di transizione, matrici di transizione ed emissione
 
 
 come spesso accade negli algoritmi di expectation maximization, il modello può convergere ad un minimo locale e non globale, quindi bisogna curare anche queste situazioni
+
+poi ci ricaviamo le nuove matrici di transizione ed emissione da forward e backward, cioè ci ricaviamo una stima
