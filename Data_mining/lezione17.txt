@@ -27,10 +27,13 @@ pruning sulle ridondanze: lo stesso sottografo lo posso ottenere più volte, com
 due grafi potrebbero avere matrici o liste di adiacenza diverse ma essere comunque isomorfi, non sono adatte a risolvere le ridondanze
 
 a partire dalla matrice di adiacenza posso definire una stringa chiamata stringa di adiacenza(ottenuta concatenando le righe o la parte triangolare superiore nel caso di archi indirezionato), le stringhe che possiamo ottenere sono le permutazioni dei nodi(con arco o no, quindi qualcosa di particolare non so calcolarla in questo momento, ma se non mi sbaglio è il fattoriale dato che sono le permutazioni,solo che ci sono elementi ripetuti quindi non saprei) , scegliamo la forma canonica(scegiamo la stringa che dia il numero più piccolo o più grande), se due grafi sono isomorfi allora avranno la stessa forma canonica.
-un sottografo frequente potrebbe essere banale(collegato al concetto di significatività statistica) 
+
+un sottografo frequente potrebbe essere banale(collegato al concetto di significatività statistica), cioè potrebbe non essere rilevante. pattern banale(nodo o arco frequente o along those lines), calcolare la significatività statistica di un pattern può essere importante per la qualità del modello, è una azione che può essere fatta in post-processing, cioè dopo aver costruito il modello.
+la significatività viene calcolata rispetto ad un database di background, opportunamente costruito, formato dal database iniziale e costruito da n grafi random a partire da ciascun grafo del database iniziale(si prendono come base e probabilmente vengono creati nuovi grafi a partire da quelli del database originario, modificando edge e nodi o cose del genere)
+si ripete la creazione del database di background un certo numero di volte, fino ad avere molti database di background  
 creiamo un database di grafi random(creiamo k database in modo iterativo), calcoliamo il supporto del sottografo di riferimento in ciascuno dei k database di background, al termine di questo passo si ottiene una distribuzione di probabilità dei valori di X
-calcoliamo la prob di osservare un supporto X maggiore o uguale al supporto, questa probabilità è il p-value.
-se il p-value è minore di una soglia, allora S è significativo come sottografo frequente.(in pratica l'ipotesi nulla è che il modello random abbia un supporto maggiore o uguale a quello del grafo normale)
+calcoliamo la prob di osservare un supporto X maggiore o uguale al supporto X0 osservato nel database iniziale da analizzare, questa probabilità è il p-value.
+se il p-value è minore di una soglia, allora S è significativo come sottografo frequente.(in pratica l'ipotesi nulla è che il modello random abbia un supporto maggiore o uguale a quello del grafo normale, quindi il sottografo è più banale dato che è stato creato da grafi random)
 
 algoritmo di edge swapping(per la creazione di un grafo random a partire da un grafo G), in pratica swappiamo gli edge, con questo algoritmo cerchiamo di mantenere il grado dei nodi 
 

@@ -1,0 +1,30 @@
+continuiamo con le HMM:
+rispolverata dei quesiti principali(evaluation,decoding e learning)
+
+vediamo il problema della evaluation:
+dobbiamo produrre uno score che permetta di vedere la probabilità che la sequenza prodotta sia d'accordo con le predizioni
+
+probabilità forward per non dover considerare la prob marginale di tutti i cammini, 
+
+si ripresenta il concetto di trellis lattice(reticolo di stati), rappresentando i cammini che portano allo specifico stato cercato.
+
+questi algoritmi di fondo sono inerentemente dinamici(calcoliamo il valore nello stato t e lo usiamo per calcolare t+1, soluzioni parziali, suboptimal), nella costruzione del trellis infatti calcoliamo il valore dello stato k a tempo t
+
+Decoding:
+avendo il trellis, dobbiamo calcolare il cammino massimo ad ogni passo(in pratica dobbiamo prendere il massimo peso tra gli archi del trellis ), in questo modo abbiamo il cammino di stati(abbiamo decodificato e trovato la sequenza effettiva?), viterbi come in reti di calcolatori.
+
+
+
+
+Learning?:
+speculare alla probabilità forward, partiamo dall'ultimo simbolo e torniamo indietro, probabilità(stato pi|sequenza di simboli), in pratica ci stiamo calcolando i pesi nel trellis in backward(simil backward-propagation)
+l'unica cosa fissata è lo stato al tempo t? la probabilità è quella di osservare al tempo t lo stato x, in pratica dobbiamo moltiplicare tutti i cammini che passano per p al tempo x(le probabilità prima del tempo t sono forward, quelle dopo sono backward)
+l'induzione e il calcolo della backward va al contrario(da t+1 a t) 
+
+
+expectation maximization bisogna trovare i parametri ottimali del modello, ma abbiamo soltanto i dati 
+
+rivedere le probabilità di transizione, matrici di transizione ed emissione
+
+
+come spesso accade negli algoritmi di expectation maximization, il modello può convergere ad un minimo locale e non globale, quindi bisogna curare anche queste situazioni
