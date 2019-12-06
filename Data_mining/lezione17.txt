@@ -1,19 +1,30 @@
-graph mining: trovare sottografi in un database di grafi, vedere quali sono i frequenti che superano una certa soglia(si confronta il supporto, cioè la frequenza del sottografo nel database, con la soglia)
+graph mining: trovare sottografi in un database di grafi, vedere quali sono i frequenti che superano una certa soglia(si confronta il supporto, cioè la frequenza del sottografo nel database, con la soglia),costruzione di un modello che possa predire nodi o archi futuri, che possa classificare i grafi in base alle loro caratteristiche comuni, che possa estrapolare le caratteristiche(feature extraction) più importanti del grafo, e talvolta queste caratteristiche devono essere una chiave per il grafo e per algoritmi che le usano per ottimizzare(indexing o altro)
 
 il problema assume somiglianza con quello dei frequent subset(con algoritmo a-priori)
 sottografi frequenti con meno nodi devono essere per forza in sottografi frequenti con più nodi
+in un database di grafi, abbiamo gli item che rappresentano nodi, i record(grafi) che rappresentano transazioni, e le relazioni tra gli item che vengono rappresentate come archi(vedere immagine sulle slide per visione)
 
-FSM: 
+Frequent Subgraph Mining: 
+identificare tutti i sottografi frequenti in un database di grafi
+si conta il numero di grafi che contengono il grafo query(calcolo del supporto)
+se il supporto è maggiore di una soglia allora il sottografo è frequente
+solitamente però più che il supporto si usa la frequenza relativa(rapporto tra supporto e numero di record), in questo caso otteniamo una percentuale(probabilità che prendento un record a caso del dataset, quel record conterrà quel sottografo)
 da input di un dataset rappresentato a grafo, usiamo il nostro algoritmo.
-creazione di sottografi, pruning, aggiunta all'insieme di grafi frequenti(da rivedere)
-se si vuole usare apriori bisogna sviluppare un approccio breadth first(prima in ampiezza) partendo da grafi con pochi nodi(all' inizio 1)
+creazione di sottografi, pruning, aggiunta all'insieme di grafi frequenti, all'inizio cerchiamo tutti i nodi ed archi frequenti nel database e li aggiungiamo all'insieme dei risultati, poi a partire dall'insieme dei sottografi già frequenti, (k-1 con k>=3) costruiamo i possibili candidati, eliminiamo sia i candidati ridondanti(ripetuti) che quelli che non soddisfano la regola A-priori, cioè i candidati che non sono frequenti e che contengono almeno un sottografo che non è frequente, e procediamo con il conteggio delle frequenze, stando attenti alla soglia(approccio bottom-up)
+se si vuole usare apriori bisogna sviluppare un approccio breadth first(prima in ampiezza),prima sottografi con k nodi, poi k+1 nodi, partendo da grafi con pochi nodi(all' inizio 1 o 2 boh), e si arriva a osservare tutti i possibili candidati fino alla fine delle possibilità
 
-gemerazioni join based con nodi o con archi(creazione di nuovi candidati da vecchi candidati tramite somma di nodi o di archi(vedere su internet e le slide per vedere come farlo))
+si potrebbe usare anche un approccio DFS, controllando ed espandendo il supporto di un singolo sottografo candidato, richiede meno memoria ma è meno efficace nel pruning
+
+
+generazioni join based con nodi o con archi(creazione di nuovi candidati da vecchi candidati tramite somma di nodi o di archi(vedere su internet e le slide per vedere come farlo))
+join-based come dice la parola uniamo più sottografi frequenti con k nodi per crearne uno con k+1 nodi,questa unione è ovviamente possibile se i due sottografi hanno almeno k-1 nodi in comune, la generazione può essere fatta pure con gli archi
 
 i core sono le parti in comune tra due grafi
 la generazione di candidati può portare ad un insieme di candidati abbastanza grande(ci possono essere anche candidati che siano matchati)
-con la generazione extend based , ci basiamo su un algoritmo dfs, dal cammino più a destra del DFS-tree creato aggiungiamo o un nodo o un arco(usiamo dfs per evitare di avere duplicati, quindi non avremo ridondanze)
+con la generazione extend based , ci basiamo su un algoritmo dfs(creazione di un albero DFS), dal cammino più a destra del DFS-tree creato aggiungiamo o un nodo o un arco(usiamo dfs per evitare di avere duplicati, quindi non avremo ridondanze)
 pruning sulle ridondanze: lo stesso sottografo lo posso ottenere più volte, come facciamo a vedere se i grafi siano isomorfismi(matchati), abbiamo bisogno di una rappresentazione univoca che ci permetta di confrontarli(come già visto nelle scorse lezioni), la rappresentazione del grafo la facciamo in base al suo tipo(sparso o denso come già visto ad algortmi)
+
+due grafi potrebbero avere matrici o liste di adiacenza diverse ma essere comunque isomorfi, non sono adatte a risolvere le ridondanze
 
 a partire dalla matrice di adiacenza posso definire una stringa chiamata stringa di adiacenza(ottenuta concatenando le righe o la parte triangolare superiore nel caso di archi indirezionato), le stringhe che possiamo ottenere sono le permutazioni dei nodi(con arco o no, quindi qualcosa di particolare non so calcolarla in questo momento, ma se non mi sbaglio è il fattoriale dato che sono le permutazioni,solo che ci sono elementi ripetuti quindi non saprei) , scegliamo la forma canonica(scegiamo la stringa che dia il numero più piccolo o più grande), se due grafi sono isomorfi allora avranno la stessa forma canonica.
 un sottografo frequente potrebbe essere banale(collegato al concetto di significatività statistica) 
