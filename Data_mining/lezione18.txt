@@ -1,8 +1,10 @@
 catene di markov e le hidden markov model:
 
-una catena di markov è un oggetto matematico, è definito da una tripla di elementi, (insieme di stati, probabilità iniziali, probabilità di transizione)
+una catena di markov è un oggetto matematico, è definito da una tripla di elementi, (insieme di stati, ogni dato rappresenta un simbolo ottenuto da un alfabeto, probabilità iniziali, probabilità di transizione,probabilità che rappresentano teoricamente la possibilità di transizione da uno stato s ad uno stato t, quindi probabilità condizionali di essere nello stato t al tempo i dato l'essere nello stato s al tempo i-1, precedente)
+le catene di markov godono della proprietà della non memoria, cioè il valore dello stato al tempo i dipende soltanto dallo stato al tempo precedente(quindi la probabilità sarà data dalla matrice di transizione), la memoryless property vale soltanto per le catene di markov del primo ordine.
 
-le probabilità di transizione sono le probabilità di trovare un arco tra un nodo ed un altro,
+le probabilità di transizione sono le probabilità di trovare un arco tra un nodo ed un altro,, tra uno stato ed un altro, le probabilità iniziali sono gli starting line per la produttoria.
+obiettivo delle catene di markov è trovare la probabilità di una sequenza ordinata di stati
 le catene di markov servono per rappresentare un istante rispetto ad un insieme di eventi, con cambiamenti di stato ed altro(da rivedere).
 
 nell'esempio meteo(ci troviamo in uno stato, sole, all'istante di tempo successivo posso essere in uno stato qualsiasi di quelli collegati con le probabilità specificate)
@@ -13,11 +15,11 @@ sequenza di eventi come prodotto di probabilità(eventi teoricamente indipendent
 formula con produttoria degli stati precedenti
 
 la matrice di transizione che ci da le probabilità di transizione di stati ha diverse proprietà:
-la somma di una riga di probabilità di stati fa 1(devo andare in uno stato), questa proprietà rende la matrice una matrice stocastica
+la somma di una riga di probabilità di stati fa 1(devo andare in uno stato), questa proprietà rende la matrice una matrice stocastica(la somma di una riga può essere vista come le probabilità di passare da un evento ad un altro, dato che abbiamo un singolo stato iniziale, la somma deve fare uno perchè stiamo calcolando le varie possibilità di cambiamento per quel singolo evento)
 
-possiamo vedere la catena di markov come un automa, generatore di simboli, le regole della generazione della stringa(n cammino determina una generazione di una stringa) vengono date dalla matrice di transizione
+possiamo vedere la catena di markov come un automa, generatore di simboli, le regole della generazione della stringa(n cammino determina una generazione di una stringa) vengono date dalla matrice di transizione, la stringa generata è il cammino del grafo annesso alle catene di markov, la probabilità di quella stringa la abbiamo già detta come produttoria per probabilità iniziale
 moltiplicando la matrice di transizione per se stessa sto trovando tutte le combinazioni , la riga ci dice da dove parto come stato, e la colonna mi dice a che stato devo arrivare,
-per generalizzare, se vogliamo arrivare a uno stato t partendo da uno stato 0, eleviamo la matrice di transizione t volte e prendiamo il record che ci interessa
+per generalizzare, se vogliamo arrivare a uno stato t partendo da uno stato 0, eleviamo la matrice di transizione t volte e prendiamo l'elemento che ci interessa
 
 se non 'partiamo da uno stato ben definito, usiamo le probabilità che ci vengono date dai dati(esempio coke pepsi 60 40, 60 * probcocapartendo da cocacola + 40 * probcocacola partendo da pepsi)
 
@@ -29,7 +31,10 @@ le catene di markov possono essere irriducibili(riducibili), tutti gli stati com
 le catene di markov aperiodiche, partendo uno stato s, minimo numero di passi per ritornare allo stato s ed avere una probabilità > 0, se il periodo è >1 allora lo stato s è detto periodico, come il grafo
 aperiodico se nessuno stato è periodico
 
-abbiamo fatto queste due definizioni perchè abbiamo quel teorema(la probabilità per stati avanzati rimane costante?)
+nell'esempio della cocacola sopra, tutti gli stati comunicavano, e gli stati potevano ritornare a se stessi con probabilità maggiore di 0(catena irriducibile e aperiodica)
+
+abbiamo fatto queste due definizioni perchè abbiamo quel teorema(la probabilità per stati avanzati rimane costante?, esistenza di una distribuzione stazionaria? per lo stato della definizione del teorema =/= 0)
+una catena di markov aperiodica con gli stati ricorrenti in modo positivo viene chiamata ergodica, le catene di markov ergodiche hanno una singola distribuzione stazionaria, cioè le probabilità dello stato a tempo tendente ad infinito sono sempre le stesse, vedere esempio per chiarimenti
 da una settimana alla settimana successiva i valori rimangono costanti, compreranno sempre la stessa bibità.
 
 questo significa che esiste una distribuzione stazionaria(la distribuzione degli stati converge?)
@@ -37,6 +42,9 @@ questo significa che esiste una distribuzione stazionaria(la distribuzione degli
 
 
 HIDDEN MARKOV MODEL:
+non ho capito bene cosa sono i simboli emessi?(nell'esempio i simboli sono strumenti usati durante il giorno in cui vi era un certo meteo sconosciuto(stato sconosciuto))
+la definizione di HMM:
+abbiamo un alfabeto di simboli, un insieme di stati, una probabilità di transizione tra due stati, una probabilità di emissione di un simbolo dato un certo stato
 estensione della catena di markov, nelle catene normali abbiamo la corrispondenza di stato e simbolo emesso univoca, in queste non sappiamo quale sia lo stato, sappiamo la sequenza di simboli(osservazioni), ogni stato nascosto può emettere un simbolo con una certa probabilità, 
 
 abbiamo molte cose, più complesso di quello normale, sappiamo la sequenza di osservazioni(simboli), per cui dobbiamo trovare la sequenza di stati che ha portato le osservazioni(probabilità maggiore di generare quei simboli in quella sequnza)
@@ -44,8 +52,8 @@ ex, partendo da delle osservazioni(sequenza di giorni meteo, simboli collegati a
 vogliamo sapere quale è la probabilità della sequenza di osservazioni(dobbiamo considerare tutte le possibili combinazioni di stati, calcolare tutte le probabilità e prendere il massimo tra le probabilità considerate) 
 
 evaluation, decoding e learning
-evaluation, dato un modello(HMM),ed una sequenza, calcolare la probabilità della sequenza dato il modello
-decoding, dato il modello e la sequenza, la sequenza di stati che massimizza la probabilità di osservare la sequenza di stati e dati dato il modello.
-learning, trovare il modello che riesca a predire(? da rivedere)
+evaluation, dato un modello(HMM),ed una sequenza, calcolare la probabilità della sequenza dato il modello, in pratica stiamo valutando il nostro modello, la sua qualità tramite la probabilità(sembra una likelihood), dopo useremo la valutazione del modello pure per trovare i parametri usati nel modello per massimizzare la sua accuratezza(learning)
+decoding, dato il modello e la sequenza, la sequenza di stati che massimizza la probabilità di osservare la sequenza di stati e dati dato il modello, in pratica vogliamo sapere quale tra le tante alternative è quella più probabile, stiamo trovando la sequenza di stati che dia la sequenza di simboli con la maggior probabilità.
+learning, dato il modello con probabilità di transizione ed emissione non specificate e la sequenza di simboli, trovare i parametri di prob transizione ed emissione che massimizzino la probabilità della evaluation(probabilmente log likelyhood)
 
  
