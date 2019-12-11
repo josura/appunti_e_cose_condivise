@@ -1,0 +1,12 @@
+oggi useremo un sensore di colore, le librerie non ci sono per stm32, interfacciamo il sensore con la MCU
+sensore della taos, non è altro che una telecamera, con meno sensori CMOS(fotosensibili), ovviamente ogni sensore può essere di 4 tipi(verde rosso blu e tutti i colori)
+di questo sensore esiste una libreria per arduino, dobbiamo trovare un modo di adattarlo in c o in c++.
+funziona con I2C, come si può vedere dalla sua funzione di init rispetto al sensore.
+per capire meglio bisogna guardare sia le librerie fornite che il manuale del componente.
+ma se non vogliamo conoscere i dettagli, usiamo un approccio forza bruta
+per alcune cose il byte order è importante, su stm32 potrebbe non andare bene, quindi dobbiamo fare una manipolazione particolare,
+compiliamo per vedere se ci sono problemi in fase di linking
+in questo caso abbiamo valori bassi(ci stà altrimenti avremm sbagliato il byte order)
+se il mio processore del MCU usa il big endian e il microprocessore del sensore usa little endian avrò un valore sbagliato della rappresentazione(valori bassi diventeranno valori alti)
+ARM come architettura ha la possibilità di definire il byte order
+se non sappiamo il byte order prendiamo il numero come due caratteri e cotruiamo il nostro numero con operatori logici

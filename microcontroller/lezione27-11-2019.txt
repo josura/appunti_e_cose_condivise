@@ -1,0 +1,6 @@
+i condensatori si trovano raramente nei circuiti reali, serve per modulare il segnale
+quando premiamo un bottone meccanico abbiamo un rimbalzo meccanico che si trasforma in un rimbalzo elettrico, quello che si fa normalmente per diminuire l'effetto dei rimbalzi è aggiungere un condensatore.
+Il principio è che collegandolo in quel modo, il condensatore si carica molto lentamente nel caso di rimbalzi, quindi questi rimbalizi sono visti come stati logici giusti(0 nel caso in cui bottone non premuto significa 1 e 0 se è premuto)
+
+per i due problemi dell'ultima volta, vediamo il primo.
+dobbiamo configurare la gpio_pin in alternate function,PB8 usa come alternate function il timer4 e il canale 3(GPIOB8 collegato al canale 3 del timer4 ,agiamo sul registro CCR3 del timer 4 per settare il duty cicle, ARR per il periodo), la alternate function è AF02(configalternate(GPIOB,8,2)), potremmo usare lo stesso timer per fare il toogle.

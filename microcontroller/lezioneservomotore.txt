@@ -1,0 +1,16 @@
+la posizione del servomotore deve essere mantenuta(servomotore perchè deve essere asservito, deve essere sottoposto ad una tensione costante per mantenere la propria posizione)
+i motori RC() hanno una modalità di pilotaggio basata su pwm, il periodo deve essere di 20 millisecondi(freq=50Hz), tempo di on [900,2100]us -> [0,170]°
+quindi per farlo funzionare dobbiamo prendere un generatore di pwm(creato da noi in software)con le caratteristiche specificate.
+le cose che dobbiamo modificare sono PSC, ARR ->P, CCR -> T_on
+dal punto di vista elettrico abbiamo alimetazione(5 V), ground e PWM(per usare il servomotore).
+
+nel suo esempio usa il trimmer per stabilire il tempo di on(i gradi di rotazione del servomotore)
+
+per i motori DC hanno due pin, si collegano direttamente alla alimentazione e al ground, dipendenti dal modo in qui mettiamo i collegamenti, il motore gira in un verso o nell'altro.
+
+abbiamo bisogno di una tensione di 12 V
+abbiamo bisogno di aumentare la tensione in qualche modo, quindi alimentazione esterna, il segnale che controlla il motore comunque è dato dal microcontrollore.
+per invertire la polarità del motore(in modo da cambiare il verso di rotazione) abbiamo bisogno di uno strumento che viene chiamato H-bridge, per vedere come funziona andare a vedere sul sito.
+
+dobbiamo fornire potenza elettrica(che verrà trasformata in potenza meccanica), solo che se abbassiamo la tensione di alimentazione abbassiamo pure la potenza, quindi non potremmo spostare quello che il motore potrebbe effettivamente spostare, invece con il PWM forniamo sempre tensione massima, ad intervalli molto piccoli(il motore parte a potenza massima e poi si ferma, iterativamente e molto velocemente, quindi diminuiamo la velocità percepità, la potenza percepita, il grafico è infatti un'onda simil-quadra)
+usiamo una frequenza di PWM intorno ai 20 KHz per non rientrare nell'udibile(potrebbe dare fastidio)

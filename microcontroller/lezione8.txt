@@ -1,0 +1,9 @@
+servomotore, ci servono due pin input e output, input per dire quale frequenza di ultrasuoni mandare, e quando catturare i segnali?
+segnale di output per prendere i dati campionati nel servomotore
+per il segnale di input dobbiamo usare un pin che permetta le alternate function
+
+per il suo sensore ultrasonico ha usato pb1 come input al sensore(perchè permette la alternate function)
+e pb2 per l'output del sensore(input al nostro microcontrollore)
+
+bisogna scegliere la frequenza con cui campionare(nel timer con alternate function tramite il prescaler, bisogna tenere conto della frequenza possibile nel sensore)
+con ARR usiamo il valore massimo

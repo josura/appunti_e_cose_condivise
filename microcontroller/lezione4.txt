@@ -1,0 +1,15 @@
+un timer non è altro che un circuito che scandisce il tempo, dal nostro punto di vista dobbiamo vederlo come una variabile globale, che cambia col tempo,un circuito di timer genera degli interrupt sulla base di valori prefissati
+nello schema a blocchi la parte superiore è la sorgente del clock
+la configurazione del CLK viene fatta all'accensione del microcontrollore, noi possiamo decidere la velocità
+quadrature encoder due impulsi diversi, tramite tali posso capire se sto andando da un verso o dall'altro, cioè decremento o incremento
+gating , attivare o disattivare l'impulso di clk sulla base di altri segnali
+la parte centrale è il contatore(i contatori)
+TIMx->PSC il prescaler è un altro registro, divisore di frequenza(scalatore, cioè divisore, pre perchè prima) ci permette di incrementare il contatore con un periodo di CLK/prescaler
+TIMx->CNT è il contatore che mantiene il valore(ricordarsi che vi è l'aritmetica binaria, aka --0 è uguale a FFF...)
+TIMx->ARR valore di incremento massimo, poi cnt viene posto a 0
+quando cnt è ricaricato, un evento di update viene generato che può triggerare(generare) un interrupt
+per il prescaler siamo limitati dalla dimensione dei registri
+se ho sbagliato con gli interrupt, mi si blocca il codice
+frequenza evento di update= frequenza di sistema / (prescaler * ARR)
+periodo di update= 1/ frequenza di update
+se voglio modulare l'intensità di un led,ho una uscita digitale e non una analogica, non ho la possibilità di mandare una tensione diversa, quindi lo modulo usando un duty cicle non simmetrico, cioè vedo l'intensità minore o maggiore rispetto al periodo di duty cicle. Questo può essere fatto usando il timer come uno slave.< 

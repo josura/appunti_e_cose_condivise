@@ -1,0 +1,13 @@
+il display a sette segmenti può essere usato sia per mostrare numeri che lettere(non tutte teoricamente, ex m)
+DISPLAY_init(void) come gli altri init teorixamente(inizializza il timer/clock)
+DISPLAY_putc(int d, char c)  scrive un carattere c nel digit d( puts per le stringhe)
+DISPLAY_dp(int d,int on_off) (turn on/off il punto decimale del digit d)
+
+Il modello del microcontrollore è fatto tramite una macchina a stati finiti(variabile stato che serve per vedere in che parte del programma ci troviamo e quali sono le operazioni che possiamo fare, solitamente si rappresentano come enum)
+ex: 
+	enum{ST_ON, ST_OFF, SETUP};
+Il cambiamento di stato si fa tramite statement condizionali if(stato)then stato =...
+oppure con un switch
+per vedere in che stato siamo nel main in un for statement sempre un switch nel caso di più di due stati.
+usando delay e altre cose avremo comunque un ritardo dato dall'esecuzione del codice.
+Con i timer ARM questo ritardo è ridotto al minimo

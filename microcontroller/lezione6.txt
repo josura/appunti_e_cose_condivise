@@ -1,0 +1,17 @@
+Oggi vedremo la periferica convertitore analogico digitale, ha soltanto input, possiamo fornire segnali di tensione
+differente dalle altre periferiche che abbiamo studiato poichè non abbiamo soltanto due teorici valori di tensione
+forniamo al nostro pin un valore analogico(di tensione) e da qualche parte nel nostro host otteniamo le nostre variabili discrete
+usato nel campionamento del segnale audio, ma in realtà è utilizzato dappertutto, da sensori di distanza(sensori di parcheggio delle automobili) etc...
+otterremo un valore campionato che sarà proporzionale al valore effettivo
+
+la prima informazione importante  è il range di tensione, solitamentee dipendente dall'alimentazione del microcontrollore, potremmo teoricamente pure configurare il range, con tensioni di riferimento Vref+ e Vreef-
+alla fine avremo un numero intero che sarà composto da un numero di bit, altra caratteristica importante, una risoluzione adeguata è con 12 bit.
+il numero di bit è configurabile, 
+problema della quantizzazione,discretizzazione, perdità inevitabile di valore, come decidiamo i nostri bit, cosa possiamo permettere
+la fase operativa di un convertitore analogico digitale si divide in due parti, sampling e conversion
+il circuito di conversione è sequenziale, cioè la conversione avviene in più passi non paralleli, quindi ha bisogno di un certo tempo
+prima di fare convertire il segnale , dobbiamo sample and hold, cioè campioniamo e manteniamo con un condensatore, come se fosse una memoria, ma non memorizza bit ma una carica elettrica, il switch serve per chiudere il circuito, è una memoria a breve termine, abbastanza per essere convertito.
+end of conversion per la notifica anche asincrona della conversione, anche con interrupt
+il dato deve essere letto solo alla fine della conversione, altrimenti saremmo in uno stato inconsistente
+uno stesso circuito di ADC può avere più ingressi, oppurtunamente multiplexati
+quasi ogni pin del nostro MCT può essere abilitato all'aquisizione di segnali analogici

@@ -1,0 +1,40 @@
+introduzione di giorgio(ripasso architettura):
+Per comunicare tra di loro i vari dispositivi hanno bisogno di una rete di interconnessione che viene fornita dal bus, durante la trasmissione nel bus solo due parti(receiver e transmitter) possono parlare tra di loro, quindi per comunicare abbiamo bisogno di segnali che permettano l'allocazione delle linee. 
+Le linee disponibili sono di tre gruppi(più linee), uno per gli indirizzi dei device, uno per il controllo, ed una per i dati, se gli indirizzi sono unificati alla memoria saremo in un caso di unificazione di indirizzamento di memoria e I/O 
+Nell'implementazione del bus abbiamo nelle linee di controllo la gestione delle interrruzioni e dell'arbitraggio.
+
+digitale significa che può avere due stati 0 o 1 in base alla tensione che viene applicata(alimentazione nel caso di 1)
+solitamente le linee di I/O sono unidirezionali.
+l'intefarccia GPIO di STM32, ci sono varie interfaccie general purpose, il circuito viene replicato in ogni digital ports
+16 pin elettrici per ogni porta(identificati dalla sigla Pxy dove x è il nome della porta, e y è il bit a cui referenziamo.
+per accendere o spegnere l'apparecchi attaccato al pin 3 della porta B dobbiamo cambiare il bit 3 della porta B
+nel microcontrollore vengono esternalizzati solo i pin di I/O 
+alcuni pin possono avere delle alternate function(usare funzioni in base alle altre periferiche)
+prima bisogna abilitare il CLK, Set-Up per la GPIO port(accendere il clock per una periferica particolare), Set-Up della direzione(I/0) del pin che si intende usare.
+operare con i singoli pin leggendo o scrivendo(in base alla nostra configurazione del pin.
+Set-Up:
+	1)inizializzo la porta(clock della porta) GPIO_init(GPIOA)
+	2)direzione del pin GPIO_config_output(GPIOA,5)
+Operate:
+	GPIO_write(GPIOA,5,0 o 1)
+
+i pulsanti sono ad 1 quando non sono premuti, i led sono accesi quando sono a 1
+i fronti sono importanti per gli interrupt
+
+
+ogni linea digitale puo essere utilizzata per fare delle richieste di interrupt
+le interrupt request possono essere tirggerate sul falling edge o sul rising edge
+il circuito di controllo degli interrupt è l'EXT, questo circuito fa il routing sulle varie linee di interrupt.
+prima di tutto si fa un routing delle linee esterne tramite un multiplexer o altro.
+l'EXTI  multiplexer è formato da più multiplexer, ognuno per la sua linea EXT 
+
+Passi:
+	1)configurare il multiplexer per connettere un pin GPIO ad una linea EXTI
+	2)configurare la linea EXTI per handleare l'interrupt specificando un edge dove attivare l'interrupt
+	3)scrivere la routine di gestione di interrupt rilevante alla linea EXTI
+
+le funzioni di interrupt hanno un nome ben definito, solitamente gli errori sono dovuti al fatto che abbiamo sbagliato un nome(handler ben definiti)
+gli interrupt dovrebbero essere funzioni molto piccole, altrimenti il programma principale deve aspettare troppo tempo
+nel caso di un architettura ad 8 bit potrebbero presentarsi problemi di concorrenza(ad 8 bit un int di 32 bit prenderebbe 4 istruzioni per essere letto o scritto, quindi può essere interrotto, con 32 solo 1 istruzione, quindi se avessimo la situazione di race condition dovremmo gestirla di conseguenza, per esempio volatile per non introdurre ottmizazioni(esecuzione non come stabilita dal programma) o usare semafori
+
+nel caso di interrupt che si accavallano guardiamo quale dei pin è stato attivato( EXTI_isset(EXTInumero) ed alla fine delle nostre operazioni EXTI_clear(EXTInumero))

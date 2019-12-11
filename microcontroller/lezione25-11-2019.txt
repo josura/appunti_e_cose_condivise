@@ -1,0 +1,13 @@
+oggi ci interlacciamo alla legge di kirchoff, guardiamo alle caratteristiche elettroniche dei microcontrollori, se abbiamo un sensore digitale o analogico, se colleghiamo una tensione maggiore danneggiamo l'hardware, abbiamo un circuito di adattamento che dal sensore ci porta al controllore, probabilmente ci serve per sistemare le tensioni.
+il primo lucido è quello della legge di ohm, cioè la tensione ai capi di una resistenza è uguale alla resistenza(valore) per la corrente che passa attraverso
+usiamo kirchoff per decidere le resistenze da usare nel voltage divider, non esistono tutti i valori di resistenze nel mondo reale(bisogna adattarsi ai protocolli e alle resistenze decise dallo standard),
+nel momento a cui ci atteniamo a resitenze di fabbrica con valori stabiliti, dobbiamo non superare il voltaggio richiesto dal microcontrollore(dagli adc o dai pin in generale),
+
+forse ho capito perchè non mi funzionava il sensore di distanza allora. forse.
+
+
+ci sta spiegando perchè il timer 5 non funziona sulle sue nucleo board, principalmente non funziona perchè serve al display a sette segmenti.
+il display collegherebbe 32 uscite, ma esistono delle tecniche che usano meno pin, in realtà il display ha 12 pin, ed usiamo particolari funzioni logiche per poter capire quali led stiamo accendendo, pin con la stessa lettera saranno collegati assieme, sfruttiamo le linee di catodo e di anodo per capire quale segmento dobbiamo accendere, solo come facciamo per segmenti diversi(non sulla stessa linea) di display diversi, possiamo risolvere questo problema accendendo le cifre non contemporaneamente ma facendolo in sequenza per ogni cifra(molto velocemente in modo che l'occhio umano non se ne accorga)
+questa tecnica si chiama multiplexing.
+per ogni software di visualizzazione dobbiamo avere una tavola di visualizzazione.
+di fondo stiamo diminuendo leggermente la tensione fornita utilizzando un PWM quindi la intensità luminosa percepita sarà minore rispetto a quella che avremmo con un unico segmento acceso.

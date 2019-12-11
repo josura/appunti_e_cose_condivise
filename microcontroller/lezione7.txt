@@ -1,0 +1,12 @@
+oggi guardiamo altre funzionalità del timer
+guardiamo alla funzionalità di slave del timer, usiamo i pin come ingressi, i pin sono tutti collegati a porte, tranne quelli di alimentazione, i pin possono svolgere molte funzioni(possono essere usati ccome input o output digitale o analogico), inoltre possiamo mappare i timer sui pin del microcontrollore
+alternate function mapping, usiamo i pin come funzioni alternative per usare come slave i timer, (AF01 mappabile da molti pin, collegato a timer particolari)
+la cosa importante è che il singolo pin è programmabile e mappabile su un timer.
+l'stm32 ha 4 canali slave programmabili(input output digitale o PWM)
+input capture cattura un fronte, molto simile agli external interrupt, l'effetto è differente, appena avviene, il valore del contatore viene copiato su ccrY, quindi viene fatto uno snapshot del contatore, viene generato un capture event interrupt
+quello descritto sopra poteva essere fatto in modo software, ma sarei legato alle latenze del software, invece con l'input capture il valore della cattura è molto più preciso ed il procedimento è veloce(infatti è usato molto nei sistemi di slavataggio timestamp ad alta precisione)
+pwm output, generare i segnale pwm secondo un impulso? totalemente in hardware, non come avevamo fatto in passato, il segnale PWM è identificato dal periodo/frequenza del segnale  e dal dutycycle(o come percentuale o come numero )
+il periodo è dato da ARR, il dutycycle è dato da CCR
+TIM_config_PWM(timer, channel)
+tim_config_timebase
+ccry=qualcosa

@@ -1,0 +1,2 @@
+sta usando un oscilloscopio
+controlliamo i tempi di segnale alto e basso, calcoliamo il duty cycle
