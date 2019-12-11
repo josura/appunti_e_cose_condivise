@@ -1,0 +1,4 @@
+l'indirizzo I2C è quello dato dal datasheet shiftato di 1(per il bit lettura o scrittura nel bit meno significativo)
+per i nack significa che il microcontrollore chiede solo una parte dei dati, gli altri non vengono acknowledgiati, l'ack indica non solo la conferma ma di andare avanti con i dati, se il microcontrollore non vuole più ricevere dati manderà un ack e poi la stop condition
+di fabbrica molti dispositivi hanno pure un registro di indirizzo, per cambiare l'indirizzo di map e richiesta
+stare attenti con i voltaggi, prendere componenti che abbiano già integrato un traslatore di tensione(per fare direttamente l'adattamento tra diverse tensioni), oppure che siano volt-tollerant(accettano tensioni maggiori i quelle specificate dai datasheet)
