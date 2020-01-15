@@ -1,5 +1,6 @@
 #include "stm32_unict_lib.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 enum {SETUP=1,RUN};
 
@@ -67,6 +68,7 @@ void configureADC(){
 
 int main(void)
 {
+	CONSOLE_init();
 	GPIO_init(GPIOB);
 	GPIO_init(GPIOC);
 	DISPLAY_init();
@@ -87,22 +89,24 @@ int main(void)
 
 	configureADC();
 
-	TIM_init(TIM1);
+	/*TIM_init(TIM1);
 	TIM_config_timebase(TIM2, 8400, 100);
 	TIM_set(TIM1, 0);
 	TIM_enable_irq(TIM1, IRQ_UPDATE);
-	TIM_on(TIM1);
+	TIM_on(TIM1);*/
 
 	TIM_init(TIM2);
 	TIM_config_timebase(TIM2, 8400, 1000);
 	TIM_set(TIM2, 0);
-	TIM_enable_irq(TIM2, IRQ_UPDATE);
 	TIM_on(TIM2);
+	TIM_enable_irq(TIM2, IRQ_UPDATE);
+
 	GPIO_write(GPIOC,3,0);
 	ADC_sample_channel(ADC1, 11);
 	ADC_start(ADC1);
 	while (!ADC_completed(ADC1)) {}
 	rottadesiderata = ADC_read(ADC1);
+	printf("iniziamo \n");
 	while(1) {
 		switch(state){
 		case RUN:
@@ -122,6 +126,7 @@ int main(void)
 
 void TIM1_IRQHandler(){
 	if (TIM_update_check(TIM1)) {		//timer conteggio rotta
+		printf("siamo dentro 1");
 		switch(state){
 		case RUN:
 			ADC_sample_channel(ADC1, 10);
@@ -150,6 +155,7 @@ void TIM1_IRQHandler(){
 void TIM2_IRQHandler(void)
 {
 	if (TIM_update_check(TIM2)) {
+		printf("siamo dentro 2");
 		switch(state){
 		case RUN:
 			break;

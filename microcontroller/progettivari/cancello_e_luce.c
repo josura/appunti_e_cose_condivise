@@ -7,6 +7,8 @@
 
 
 #include "stm32_unict_lib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int percap=0;
 int timer_att=0;
@@ -172,6 +174,7 @@ void TIM2_IRQHandler(void)
 }
 
 void EXTI4_IRQHandler(void){   //tasto Y
+	printf("tasto y premuto\n");
 	if (EXTI_isset(EXTI4)) {
 		switch(state){
 		case CLOSED:
@@ -194,6 +197,7 @@ void EXTI4_IRQHandler(void){   //tasto Y
 void EXTI9_5_IRQHandler(void)
 {
 	if (EXTI_isset(EXTI5)) {   //tasto Z
+		printf("tasto z premuto\n");
 		switch(state){
 		case CLOSED:
 			//niente
@@ -216,6 +220,7 @@ void EXTI9_5_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
 	if (EXTI_isset(EXTI10)) {    //tasto X
+		printf("tasto x premuto\n");
 		switch(state){
 		case CLOSED:
 			state=OPENING;
