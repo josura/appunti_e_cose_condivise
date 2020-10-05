@@ -113,23 +113,7 @@ http://syllabus.unict.it/insegnamento.php?mod=22707
 
 \end_inset
 
- ):
-\end_layout
-
-\begin_layout Itemize
-Tadei-Bruglieri per programmazione lineare e programmazione lineare intera
-\end_layout
-
-\begin_layout Itemize
-Baldacci approccio lineare a PL e PLI
-\end_layout
-
-\begin_layout Itemize
-Fumero esercizi PL e PLI
-\end_layout
-
-\begin_layout Itemize
-Bruglieri per teoria dei giochi e ottimizzazione non lineare
+ )
 \end_layout
 
 \begin_layout Standard
@@ -145,10 +129,7 @@ ottimizzazione matematica si occupa di risolvere problemi di minimizzazione
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $min(f(x))\vee max(f(x))$
-\end_inset
-
-, 
+min(f(x))U max(f(x)), 
 \begin_inset Formula $f:\mathbb{R}^{n}\rightarrow\mathbb{R}$
 \end_inset
 
@@ -164,10 +145,8 @@ noi ci occupiamo di problemi di minimizzazione
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $max(f(x))=-min(-f(x))$
-\end_inset
-
- ovviamente dato che la funzione è flippata sull'asse del le ascisse.
+max(f(x)) = -min(-f(x)) ovviamente dato che la funzione è flippata sull'asse
+ del le ascisse.
 \end_layout
 
 \begin_layout Standard
@@ -184,12 +163,11 @@ CLASSIFICAZIONE DEI PROBLEMI
 problemi di programmazione lineare, i più semplici, vincoli e funzione obiettivo
  lineari, aka del tipo a1x1+...+anxn.
  Il grado delle variabili è sotto il seco ndo.
- no prodotti, no logaritmi, solo rette
+ 
 \end_layout
 
 \begin_layout Enumerate
-problemi non lineari, almeno una funzione non è lineare, una variabile varia
- con andamento non lineare.
+problemi non lineari, almeno una funzione non è lineare.
 \end_layout
 
 \begin_layout Subsection
@@ -198,16 +176,10 @@ PROGRAMMAZIONE LINEARE
 
 \begin_layout Standard
 Programmazione sta per pianificazione, infatti la programmazione lineare
- è lo strumento più utilizzato per l'
-\series bold
-\emph on
-Allocazione Ottimale Delle Risorse Per Attività In Competizione
-\series default
-\emph default
- tra loro.
- Molti problemi di ottimizzazione su rete(rooting, shortest path o altro),
- matching e altri possono essere formulati come problemi di programmazione
- lineare.
+ è lo strumento più utilizzato per l'allocazione ottimale delle risorse
+ per attività in competizione tra loro.
+ Molti problemi di ottimizzazione su rete(rooting o altro), matching e altri
+ possono essere formulati come problemi di programmazione lineare.
 \end_layout
 
 \begin_layout Standard
@@ -224,23 +196,10 @@ Che cosa è la programmazione intera mista (mi sembra un modello).
 \end_layout
 
 \begin_layout Standard
-Giochino di modellizzazione, 
-\series bold
-ESEMPIO DEI LEGO
-\series default
-, tavolo 2 mattoni piccoli e 2 mattoni grandi vogliamo costruire la sedia,
- un mattone grande e due mattoni piccoli, prezzo di vendita per la sedia
- 15 euro, prezzo di vendita del tavolo 20 euro, abbiamo 8 mattoni piccoli
- e 6 mattoni grandi
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-PROBLEMA DI ALLOCAZIONE OTTIMA DELLE RISORSE
-\series default
- (hanno tutti la stessa struttura, massimizzazione profitto, risorse limitate
- cioè vincoli)
+Giochino di modellizzazione,, tavolo 2 mattoni piccoli e 2 mattoni grandi
+ vogliamo costruire la sedia, un mattone grande e due mattoni piccoli, prezzo
+ di vendita per la sedia 15 euro, prezzo di vendita del tavolo 20 euro,
+ abbiamo 8 mattoni piccoli e 6 mattoni grandi
 \end_layout
 
 \begin_layout Standard
@@ -361,15 +320,7 @@ funzione da ottimizzare(massimizzare)
 \begin_inset Formula $f(x)=15x_{1}+20x_{2}$
 \end_inset
 
- 
-\begin_inset Formula $#prodotti=#variabili$
-\end_inset
-
-, 
-\begin_inset Formula $#risorse=#vincoli$
-\end_inset
-
-, 
+ # prodotti = # variabili, # risorse, 
 \end_layout
 
 \begin_layout Standard
