@@ -1,0 +1,357 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language italian
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style french
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lezione 1
+\end_layout
+
+\begin_layout Standard
+indirizzo web: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://web.dmi.unict.it/docenti/laura.rosa.maria.scrimali?eng
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+esame soltanto orale(domande teoria + un esercizio svolto parzialmente durante
+ l'orale, mi sembra OK) programma del corso un po' dappertutto
+\end_layout
+
+\begin_layout Standard
+testi di riferimento sul syllabus ( 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://syllabus.unict.it/insegnamento.php?mod=22707
+\end_layout
+
+\end_inset
+
+ )
+\end_layout
+
+\begin_layout Standard
+portarci ad un livello tale dove possiamo costruire dei modelli matematici
+ buoni per risolvere il problema in questione.
+ 
+\end_layout
+
+\begin_layout Standard
+ottimizzazione matematica si occupa di risolvere problemi di minimizzazione
+ o massimizzazione di una certa funzione sotto certi vincoli (lo avevo già
+ espresso in passato con diminuzione entropia e massimizzazione informazione)
+\end_layout
+
+\begin_layout Standard
+min(f(x))U max(f(x)), 
+\begin_inset Formula $f:\mathbb{R}^{n}\rightarrow\mathbb{R}$
+\end_inset
+
+ funzione obiettivo, X regione ammissibile(supporto?), 
+\begin_inset Formula $x\in X$
+\end_inset
+
+ punto ammissibile
+\end_layout
+
+\begin_layout Standard
+noi ci occupiamo di problemi di minimizzazione
+\end_layout
+
+\begin_layout Standard
+max(f(x)) = -min(-f(x)) ovviamente dato che la funzione è flippata sull'asse
+ del le ascisse.
+\end_layout
+
+\begin_layout Standard
+Risolvere un problema di ottimizzazione vuol dire cercare il minimo(massimo)
+ se esiste della funzione obiettivo sotto certi vincoli (lo ha già detto
+ ma vabeh).
+\end_layout
+
+\begin_layout Section
+CLASSIFICAZIONE DEI PROBLEMI 
+\end_layout
+
+\begin_layout Enumerate
+problemi di programmazione lineare, i più semplici, vincoli e funzione obiettivo
+ lineari, aka del tipo a1x1+...+anxn.
+ Il grado delle variabili è sotto il seco ndo.
+ 
+\end_layout
+
+\begin_layout Enumerate
+problemi non lineari, almeno una funzione non è lineare.
+\end_layout
+
+\begin_layout Subsection
+PROGRAMMAZIONE LINEARE
+\end_layout
+
+\begin_layout Standard
+Programmazione sta per pianificazione, infatti la programmazione lineare
+ è lo strumento più utilizzato per l'allocazione ottimale delle risorse
+ per attività in competizione tra loro.
+ Molti problemi di ottimizzazione su rete(rooting o altro), matching e altri
+ possono essere formulati come problemi di programmazione lineare.
+\end_layout
+
+\begin_layout Standard
+Esistono risolutori commerciali (CPLEX) e linguaggi di modellizzazione (AMPL,
+ GAMS, JULIA).
+\end_layout
+
+\begin_layout Standard
+Bella la legofication.
+\end_layout
+
+\begin_layout Standard
+Che cosa è la programmazione intera mista (mi sembra un modello).
+\end_layout
+
+\begin_layout Standard
+Giochino di modellizzazione,, tavolo 2 mattoni piccoli e 2 mattoni grandi
+ vogliamo costruire la sedia, un mattone grande e due mattoni piccoli, prezzo
+ di vendita per la sedia 15 euro, prezzo di vendita del tavolo 20 euro,
+ abbiamo 8 mattoni piccoli e 6 mattoni grandi
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|l|l|l|l|}       
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline        
+\end_layout
+
+\begin_layout Plain Layout
+
+& Mattone grande & mattone piccolo & costo  
+\backslash
+
+\backslash
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline sedia  
+\end_layout
+
+\begin_layout Plain Layout
+
+& 1              & 2               & 15     
+\backslash
+
+\backslash
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline tavolo 
+\end_layout
+
+\begin_layout Plain Layout
+
+& 2              & 2               & 20     
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{1}=\#$
+\end_inset
+
+ di sedie da produrre
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{2}=\#$
+\end_inset
+
+ di tavoli da produrre
+\end_layout
+
+\begin_layout Standard
+funzione da ottimizzare(massimizzare) 
+\begin_inset Formula $f(x)=15x_{1}+20x_{2}$
+\end_inset
+
+ # prodotti = # variabili, # risorse, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{1}+2x_{2}\leq6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $2x_{1}+2x_{2}\leq8$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x_{1}\geq0,x_{2}\geq0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+il problema rivedilo che devi riportare tutti i vincoli e la legge finale.
+\end_layout
+
+\begin_layout Standard
+Rappresentazione grafica dove la faccio, qui, su samsung notes e dopo la
+ carico qui, boh.
+\end_layout
+
+\end_body
+\end_document

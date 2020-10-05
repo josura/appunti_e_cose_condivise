@@ -1,0 +1,24 @@
+indirizzo web: http://web.dmi.unict.it/docenti/laura.rosa.maria.scrimali?eng
+
+esame soltanto orale(domande teoria + un esercizio svolto parzialmente durante l'orale, mi sembra OK)
+programma del corso un po' dappertutto
+
+testi di riferimento sul syllabus ( http://syllabus.unict.it/insegnamento.php?mod=22707 )
+
+portarci ad un livello tale dove possiamo costruire dei modelli matematici buoni per risolvere il problema in questione.
+
+ottimizzazione matematica si occupa di risolvere problemi di minimizzazione o massimizzazione di una certa funzione sotto certi vincoli (lo avevo già espresso in passato con diminuzione entropia e massimizzazione informazione)
+
+min(f(x))U max(f(x)), f:Rxn-->R funzione obiettivo, X regione ammissibile(supporto?), x\in X punto ammissibile
+
+noi ci occupiamo di problemi di minimizzazione
+
+max(f(x)) = -min(-f(x)) ovviamente dato che la funzione è flippata sull'asse delle ascisse.
+
+Risolvere un problema di ottimizzazione vuol dire cercare il minimo(massimo) se esiste della funzione obiettivo sotto certi vincoli (lo ha già detto ma vabeh).
+
+CLASSIFICAZIONE DEI PROBLEMI
+1) problemi di programmazione lineare, i più semplici, vincolie funzione obiettivo lineari, aka del tipo a1x1+...+anxn. Il grado delle variabili è sotto il secondo.
+2) problemi non lineari, almeno una funzione non è lineare.
+
+
