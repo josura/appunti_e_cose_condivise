@@ -1,0 +1,200 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+per PL valgono 3 proprietà: 1) proporzionalità, non ci sono economii? di
+ scala; 2) additività, ogni variabile da il proprio contributo, le variabili
+ non si influenzano reciprocamente; 3) continuità, le variabili stanno in
+ 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+rette,semipiani in 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+, IPERPIANI e SEMISPAZI in 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+L'intersezione di un numero finito di iperpiani e semispazi (chiusi quindi
+ che hanno bordo?, le diseguaglianze sono di tipi 
+\backslash
+leq e 
+\backslash
+geq) si chiama POLIEDRO
+\end_layout
+
+\begin_layout Standard
+Le altre cose prenditele dalla lezione e dalle slide perché mi secca scriverle.
+\end_layout
+
+\begin_layout Standard
+combinazione convessa con 
+\begin_inset Formula $\lambda\in[0,1],z=\lambda x+(1-\lambda)y$
+\end_inset
+
+ o molto semplicemente combinazione lineare con coefficienti compresi tra
+ 0 e 1 e condizione della sommatoria.
+\end_layout
+
+\begin_layout Standard
+Un poliedro è un insieme convesso(intersezioni di iperpiani e semipiani
+ che sono oggetti convessi), i PL sono problemi convessi.
+\end_layout
+
+\begin_layout Standard
+(Teorema fondamentale della programmazione lineare) Sia dato 
+\begin_inset Formula $P=\{x\in\mathbb{R}^{n}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+TUTTE LE DEFINIZIONI ED IMPLICAZIONI DA RIVEDERE.
+\end_layout
+
+\begin_layout Standard
+per cercare l'ottimo basta cercare i vertici , questo non garantisce l'unicità
+ della soluzione.
+\end_layout
+
+\begin_layout Standard
+PROPRIETÀ GREEDY: un vertice è ottimo se e solo se non esistono vertici
+ adiacenti migliori(non mi convince la località comunque)
+\end_layout
+
+\begin_layout Standard
+FORMA STANDARD IN PL: un problema di programmazione lineare si dice in forma
+ standard se è nella forma (quella cosa), quindi problema di minimizzazione,
+ vincoli lineari come eguaglianze, variabili maggiori di 0
+\end_layout
+
+\begin_layout Standard
+Ogni problema di PL si può porre in forma standard, infatti, un problema
+ di massimizzazione si trasforma in un problema di minizzazione, i costraint
+ si possono invertire cambiando il segno, e si può aggiungere la 
+\begin_inset Quotes eld
+\end_inset
+
+variabile scarto
+\begin_inset Quotes erd
+\end_inset
+
+ per prendere solo i valori uguali, dato che sono quelli che ci interessano
+ (vertici), anche se la politica di risoluzione mi sembra cambiare il secondo
+ termine per porlo maggiore di 0 e poi aggiungere una variabile (- o + dipendent
+e dal segno della disuguaglianza).
+\end_layout
+
+\begin_layout Standard
+qualunque numero reale si può scrivere come differenza tra due numeri positivi,
+ questa cosa può essere utilizzata per variabili che possono prendere valori
+ negativi, questo per arrivare alla forma standard
+\end_layout
+
+\begin_layout Standard
+variabile libera in segno se può assumere sia valori negativi che positivi,
+ quindi trasformazione in due variabili
+\end_layout
+
+\begin_layout Standard
+Esempi di conversione nel tablet, l'ultimo è importante ma fai prima a rivederti
+ la lezione.
+\end_layout
+
+\begin_layout Standard
+Ora ci manca collegare la forma standard alla ricerca effettiva dei vertici,
+ quindi fare vedere che la risoluzione del problema è automatica.
+\end_layout
+
+\begin_layout Standard
+Dall'esempio della lezione, annulliamo le variabili e troviamo punti appartenent
+i all'insieme ammissibile, il ragionamento può essere generalizzato:
+\end_layout
+
+\end_body
+\end_document

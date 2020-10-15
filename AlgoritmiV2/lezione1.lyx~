@@ -1,0 +1,163 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+lezione1
+\end_layout
+
+\begin_layout Section
+Analisi ammortizzata
+\end_layout
+
+\begin_layout Standard
+Il costo si può dividere in task, quindi viene ammortizzato, algoritmi usati
+ per la manipolazione, poco chiaro quindi da rivedere.
+\end_layout
+
+\begin_layout Standard
+Una operazione potrebbe non rispettare la complessità assegnata e si dice
+ ammortizzata.
+\end_layout
+
+\begin_layout Section
+Strutture dati avanzate
+\end_layout
+
+\begin_layout Itemize
+B-TREE per trattare strutture dati enormi, alberi bilanciati, costo extra
+ per accesso alla memoria secondaria, da rivedere, usati per implementazione
+ di database.
+\end_layout
+
+\begin_layout Itemize
+SPLAY TREE alberi di ricerca non bilanciati, potrebbe diventare un solo
+ ramo quindi top complessità, operazioni relativamente complesse, con analisi
+ ammortizzata si vede che m log(n) è la complessità ammortizzata delle operazion
+i , bilanciamento ammortizzato
+\end_layout
+
+\begin_layout Itemize
+HEAP BINOMIALI costo logaritmico nel caso peggiore,tutte le operazioni con
+ costo logaritmico, da rivedere
+\end_layout
+
+\begin_layout Itemize
+HEAP DI FIBONACCI , non assicura un costo logaritmico su ciascuna operazione,
+ con analisi ammortizzata si vede che le operazioni diventano a tempo costante,
+ sostanzialmente le operazioni di sincronizzazioni ed altre vengono posticipate
+ aka approccio lazy,da rivedere
+\end_layout
+
+\begin_layout Itemize
+STRUTTURE DATI PER INSIEMI DISGIUNTI, due elementi stanno nello stesso insieme,
+ intersezione, merge nelle stesse classi di equivalenza, d.r.
+\end_layout
+
+\begin_layout Section
+Algoritmi per grafi
+\end_layout
+
+\begin_layout Itemize
+ALBERI DI CONNESSIONE MINIMI, dato un grafo connesso pesato, trovare un
+ sott'albero che tocchi tutti i vertici e tale che la somma di tutti i pesi
+ è la minore rispetto a qualsiasi albero-grafo
+\end_layout
+
+\begin_layout Itemize
+CAMMINI MINIMI (?) classici teoricamente, il punto interrogativo non lo
+ capisc (era per capire se farlo o no dato che lo abbiamo già trattato in
+ passato anche abbastanza bene), lo abbiamo già fatto
+\end_layout
+
+\begin_layout Itemize
+FLUSSO MASSIMO, reti di trasporto, capacità di un certo flusso.
+\end_layout
+
+\begin_layout Section
+NP-completezza
+\end_layout
+
+\begin_layout Standard
+probabilmente la faremo meglio al posto di cammini minimi.
+\end_layout
+
+\begin_layout Section
+Cenni su algoritmi approssimati e randomizzati
+\end_layout
+
+\end_body
+\end_document

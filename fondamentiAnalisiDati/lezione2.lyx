@@ -1,0 +1,158 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+L'analisi dati prende delle informazioni segnate con x sbarrato, componenti
+ atomiche perché dice che non si possono semplificare?
+\end_layout
+
+\begin_layout Standard
+y è la risposta.
+\end_layout
+
+\begin_layout Standard
+classiconate comunque, non so neanche se scriverle tanto sono basilare e
+ io le ho già viste nello specifico.
+\end_layout
+
+\begin_layout Standard
+calcoli deterministici, misure dirette o leggi deterministiche
+\end_layout
+
+\begin_layout Standard
+ora sta spiegando come sono gli errori e da cosa vengono causati, poi penso
+ spiegerà bias-variance.
+\end_layout
+
+\begin_layout Standard
+Funzioni caotiche, insiemi di Mandelbrot, una piccola variazione di clima
+ produce una grande variazione dell'output, frattali come esempio dove se
+ si prende un punto abbastanza vicino ad altri si hanno risultati contrastanti
+ ed abbastanza sparsi.
+ Non ci occupiamo di risultati troppo caotici.
+\end_layout
+
+\begin_layout Standard
+classificazione predizione di valori che sono classi di appartenenza sulla
+ base di valori sia qualitativi che quantitativi.
+\end_layout
+
+\begin_layout Standard
+analisi fuzzy con voti soggettivi e gradi di confidenzialità, per esempio
+ per più classi, una specie di probabilità che l'oggetto appartenga ad una
+ classe, degree of belief.
+\end_layout
+
+\begin_layout Standard
+regressione tutta bella per predizione di dati quantitativi ma anche qualitativi
+ con regressione binaria, il nome viene
+\end_layout
+
+\begin_layout Part
+pipeline tipica di una buona analisi
+\end_layout
+
+\begin_layout Standard
+quale informazioni si vogliono e possono ottenere.
+\end_layout
+
+\begin_layout Standard
+raccolta e preprocessing dei dati
+\end_layout
+
+\begin_layout Standard
+esplorazione dei dati
+\end_layout
+
+\begin_layout Standard
+proposta di modelli e 
+\end_layout
+
+\begin_layout Section
+statistica
+\end_layout
+
+\begin_layout Standard
+sigma algebra e spazio degli esiti e degli eventi
+\end_layout
+
+\begin_layout Standard
+probabilità, densità, ripassa da Muscato.
+\end_layout
+
+\end_body
+\end_document

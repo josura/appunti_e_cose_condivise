@@ -1,0 +1,4 @@
+*.metals
+*.vscode
+*.zit
+*.Rhistory
