@@ -1,14 +1,15 @@
-RETI NEURALI:
+﻿RETI NEURALI:
 
 con turing abbiamo le prime definizioni di AI, 1950 more or less
 non esistono soltanto supervised(risultati noti, responce alla mano) e unsupervised(risultati non disponibili), esiste anche il reinforcement learning(è un problema principalmente di intelligenza artificiale, come nei giochi, esempio del labirinto come sequenza di azioni che massimizza una funzione di guadagno che definiamo noi, massimizziamo il guadagno e minimizziamo la perdita, quindi una serie di azioni che posso compiere, ed una funzione da massimizzare)
 problema di ottimizzazione quindi, il machine learning è un problema di ottimizzazione, quindi vincoli della rappresentazione del problema, funzione da ottimizzare, algoritmo di ottimizzazione.
 pulire i dati da tutto il rumore.
-parliamo di regressione e classificazione, con la regressione lineare costruiamo l'iperpiano che ci permette di predire i valori minimizzando la funzione di errore(con gradient descent).
+parliamo di regressione e classificazione, con la regressione lineare costruiamo l'iperpiano che ci permette di predire i valori minimizzando la funzione di errore(con gradient descent). Però l’iperpiano sarebbe meglio analogizzarlo con la classificazione dato che dobbiamo classificare
 si inizia con pesi distribuiti secondo una normale, e si calcola il gradiente, si aggiornano i pesi con i learning rate(calcolati tramite il gradiente).
 con la classificazione, regressione logistica per cose molto semplici, usiamo la sigmoide, restituiamo un output compreso tra 0 e 1, quello che abbiamo fatto noi sono stati i perceptron, ma i sigmoid sono una cosa migliore.
 dati di input e di output come distribuzioni di probabilità, quindi ci possiamo calcolare la distanza tra due distribuzioni di probabilità usando la cross-entropy, minimizziamola(0 per risultati perfetti), quindi anche in questo caso possiamo usare il gradient descent, aggiorniamo i pesi e abbiamo più o meno la stessa funzione(regressione logistica)
-ci sta facendo la comparision, cambiano solo il modo in cui si calcolano e si predicono, il gradient descent resta comunque lo stesso, vai a rivedere perchè quella cosa che mi sembra la activation function.
+essenziale per un modello di rete neurale artificiale sono la funzione obiettivo , il modo di minimizzare la funzione obiettivo, la correzione dei pesi, l’interpretazione dei risultati finali, la funzione di attivazione, ed altro
+ci sta facendo la comparision, cambiano solo il modo in cui si calcolano e si predicono(cambia in real’tà la funzione di attivazione(sigmoide o RELU) e la funzione obiettivo, una è RSS, l’altra è la cross entropy cancerosa), il gradient descent resta comunque lo stesso, vai a rivedere perchè quella cosa che mi sembra la activation function.
 
 ArtificialNeuralNetworks are similar in regression and classification, quindi unifichiamo e notiamo una somiglianza con i perceptron.
 ci sta facendo vedere l'idea dietro, cioè ispirazione con i neuroni veri, aiha.
@@ -36,6 +37,7 @@ dopo la costruzione della rete neurale prendo dei pesi casuali(definiti da un ip
 ogni round di back-propagation viene chiamata epoca(epoch), per settare il learning rate bisogna considerare molti fattori, bisogna comunque trovare il valore migliore.
 
 come addestriamo una rete neurale, attenzione alle interazioni tra training e test set.
+Vabeh comunque usa la cross validation ed minimizza la possibilità di overfittare
 usiamo dei batch e ripetiamo l'aggiornamento per ogni batch testando la rete ad ogni passo per il test set, si continua finchè non vediamo più un guadagno in accuratezza(la funzione di errore non si minimizza più), quindi ad ogni epoca dobbiamo ripetere questo procedimento, bisogna comunque fermare il training della rete dopo aver visto il tasso di errore ed aver considerato il margine di improvement, quindi attenzione all'overtraining.
 Il design delle reti neurali è completamente arbitrario, acquisiamo con l'esperienza e con la conoscenza la capacità della costruzione di una rete che sia adatta a classificare quello che vogliamo, più layer aggiungiamo più aumentiamo la dimensionalità delle regioni di classificazione(cos' sembra dalle figure nelle slide).
 

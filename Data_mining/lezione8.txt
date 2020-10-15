@@ -1,4 +1,4 @@
-differenza tra classificazione e predizione: nella classificazione abbiamo classi dove andare a mettere gli oggetti, costruiamo un modello che decida la classe corrispondente sul training set
+﻿differenza tra classificazione e predizione: nella classificazione abbiamo classi dove andare a mettere gli oggetti, costruiamo un modello che decida la classe corrispondente sul training set
 
 lo schema generale di classificazione, si costruisce il modello sulla base del training set, tramite alberi decisionali bayes o altro
 
@@ -19,9 +19,9 @@ dopo la divisione bisogna vedere se un nodo è puro o impuro(con attributi da sc
 mi sta assomigliando molto all'analisi delle dipendenze funzionali, dobbiamo comunque non suppore che i dati siano strutturati, quindi non è realmente una analisi di dipendenze funzionali, si può comunque pensare ad un modo di costruire il nostro modello utilizzando pure le dipendenze funzionali.
 i passi base rimangono sempre gli stessi, cioè vedere se è impuro o puro e splittare di conseguenza
 comunque bisogna vedere come fare lo splitting, in base al tipo degli attributi(categoriali, continui,booleani)
-la cosa importante nella costruzione dell'albero decisionale è la scelta degli attributi di split, che come vedremo in seguito, devono massimizzare o minimizzare certe misure di qualità del nostro albero
+la cosa importante nella costruzione dell'albero decisionale è la scelta degli attributi di split, che come vedremo in seguito, devono massimizzare o minimizzare certe misure di qualità del nostro albero, in pratica vogliamo effettuare uno splitting ottimale che ci porti ad un albero che si avvicini a quello minimale, quindi portiamo avanti una strategia greedy e scegliamo attributi che ci porterebbero ad avere foglie più velocemente(problemi con chiavi)
 
-la scelta dell'attributo da utilizzare nelle partizioni viene fatta sulla misura di goodness(misura basata sull'entropia,meno l'entropia è presente, i dati sono circa uniformi,puri per così dire, altrimenti entropia uniforme, i dati si presentano un po' alla cazzo di cane,l'information gain rappresenta questa riduzione di entropia)
+la scelta dell'attributo da utilizzare nelle partizioni viene fatta sulla misura di goodness(misura basata sull'entropia,meno l'entropia è presente, i dati sono circa uniformi,puri per così dire, altrimenti entropia uniforme, i dati si presentano un po' alla cazzo di cane,l'information gain rappresenta questa riduzione di entropia), in pratica individua l’attributo dove ci sono più etichette uguale, cioè l’attributo più “puro”
 miriamo ad ottenere partizioni con entropia bassa, cerchiamo di minimizzare l'entropia globale, in modo da avere nodi puri(più o meno)
 
 l'information gain è la sottrazione tra l'entropia iniziale e l'entropia dopo lo split, questa è la funzione da massimizzare, information gain perchè rappresenta la possibile informazione in più che potremmo acquisire dallo split(teoricamente).

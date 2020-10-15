@@ -1,19 +1,19 @@
-argomento classico, primo argomento classico, regole di associazione (market baskets, frequent itemsets, a-priori algorithm)
+﻿argomento classico, primo argomento classico, regole di associazione (market baskets, frequent itemsets, a-priori algorithm)
 c'è un supermercato, ci sono i clienti del supermercato, un grande insieme di oggetti che rappresentano i prodotti, e cestini che vengono rappresentati da scontrini, le domande e gli studi sono come disporre gli oggetti, come raggrupparli, come associarli con proprietà particolari
 Il nostro interesse va a eventi che accadono non in maniera casuale, infatti ci occupiamo della modellistica.
 support for itemset i , we want to see the common patterns of objects in baskets, and also we wanna find the objects that are the most frequent, overcoming a threshold that we pick
-incominciamo la nostra ricerca da insiemi di un solo oggetto.
+incominciamo la nostra ricerca da insiemi di un solo oggetto(in realtà si inizia da due solitamente perchè esistono metodi veloci per vedere la presenza di coppie che vedremo in seguito, come la triangle matrix o la funzione di hash che associa ad ogni coppia un conteggio).
 aumentiamo i subset from time to time 
-in effetti quando andiamo a costruire i subset più grandi possiamo usare i subset più piccoli, quasi a simulare la maniera ricorsiva
+in effetti quando andiamo a costruire i subset più grandi possiamo usare i subset più piccoli, quasi a simulare la maniera ricorsiva(in realtà una migliore analogia sarebbe con una strategia bottom-up)
 come altra applicazione le pagine web e le frasi da ricercare, esempio di plagio
 regole di associazione, associato ad insieme frequente
 regole di se-allora sui contenuti dei baskets, se il basket contiene i1, i2...in allora conterra pure j(da risultati e da una previsione che stiamo facendo 
 parametri particolari, supporto(che deve superare il threshold) e confidenza(probabilità condizionata)
 bisogna trovare le regole di associazione con supporto>=s e la confidenza >=c
 il supporto di una associazione è il supporto dell'insieme  di oggetti sulla destra?
-la confidenza è un po' iù difficile
-il problema più pesante rispetto all'analisi di un data set sono le coppie, la cardinalita dovrebbe essere 2^n , poi da questo come già ho detto prima possiamo direttamente calcolare le triple come sottoinsieme
-come contare le associazioni con le frequenze delle stesse, con una matrice triangolare, oppure come una tabella di triple(due oggetti e il loro conteggio)
+la confidenza è un po' più difficile
+il problema più pesante rispetto all'analisi di un data set sono le coppie, la cardinalita dovrebbe essere n^2 , poi da questo come già ho detto prima possiamo direttamente calcolare le triple come sottoinsieme
+come contare le associazioni con le frequenze delle stesse, con una matrice triangolare, oppure come una tabella hash di triple(due oggetti e il loro conteggio)
 ex oggetti possibili nei lati di un triangolo, le coppie formano i conteggi di carrelli che li contengono
 
 infatti come avevo predetto sta usando la ricorsione sulla cardinalità dei sottoinsiemi, cioè i candidati dei sottoinsiemi di k sono quelli di k-1
