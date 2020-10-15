@@ -1,4 +1,6 @@
 *.metals
 *.vscode
-*.zit
+*.zip
 *.Rhistory
+Data_mining/R_things
+
