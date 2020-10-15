@@ -1,7 +1,7 @@
-﻿graph mining: trovare sottografi in un database di grafi, vedere quali sono i frequenti che superano una certa soglia(si confronta il supporto, cioè la frequenza del sottografo nel database, con la soglia),costruzione di un modello che possa predire nodi o archi futuri, che possa classificare i grafi in base alle loro caratteristiche comuni, che possa estrapolare le caratteristiche(feature extraction) più importanti del grafo, e talvolta queste caratteristiche devono essere una chiave per il grafo e per algoritmi che le usano per ottimizzare(indexing o altro)
+graph mining: trovare sottografi in un database di grafi, vedere quali sono i frequenti che superano una certa soglia(si confronta il supporto, cioè la frequenza del sottografo nel database, con la soglia),costruzione di un modello che possa predire nodi o archi futuri, che possa classificare i grafi in base alle loro caratteristiche comuni, che possa estrapolare le caratteristiche(feature extraction) più importanti del grafo, e talvolta queste caratteristiche devono essere una chiave per il grafo e per algoritmi che le usano per ottimizzare(indexing o altro)
 
 il problema assume somiglianza con quello dei frequent subset(con algoritmo a-priori)
-sottografi frequenti con meno nodi devono essere per forza in sottografi frequenti con più nodi(sullo stesso grafo bisogna vedere però se si overlappano ed in quel caso più avanti vedremo che non si può usare una strategia a priori)
+sottografi frequenti con meno nodi devono essere per forza in sottografi frequenti con più nodi
 in un database di grafi, abbiamo gli item che rappresentano nodi, i record(grafi) che rappresentano transazioni, e le relazioni tra gli item che vengono rappresentate come archi(vedere immagine sulle slide per visione)
 
 Frequent Subgraph Mining: 
@@ -44,7 +44,6 @@ generiamo i candidati con join-based per aggiunta di singoli archi
 usiamo la forma canonica per la creazione di core(matchando le stringhe, cerchiamo i sottografi isomorfi in modo veloce e univoco, senza ambiguazioni)
 riguardare inverted list per ottimizzazioni(da quel che ho capito un sottografo di n nodi è presente solo se i suoi sottografi n-1 sono presenti),cioè è una cosa che dipende tutta dalle transazioni(Transaction identifier), cioè i grafi che contengono il sottografo frequente
 con il pruning filtriamo i grafi che ci interessano, cioè solo i grafi per cui valgono quelle regole
-sfruttiamo molto l’apriori, specialmente nel join based
 
 ALGORITMO GSPAN:
 gspan non di basa sull'apriori, si basa sul dfs, i sottografi vengono rappresentati tramite dfs code(la parte del calcolo non l'ho capita molto bene, mi sembrava simile all'ordinamento topologico ma non saprei dopo aver letto le varie definizioni)
@@ -53,6 +52,4 @@ gspan non di basa sull'apriori, si basa sul dfs, i sottografi vengono rappresent
 
 altro problema è la frequenza di sottografi nello stesso grafo(mining a singolo grafo). con la regola apriori bisogna stare attento  perchè possiamo avere grafi più grandi formati da sotto grafi che hanno una frequenza maggiore rispetto ai sottografi di cui sono formati(teoricamente non è ammesso dall'apriori).
 Comunque ci si può ricondurre alle strategie usate per il graph mining normale(con le opportune modifiche), facendo attenzione al fatto che siamo comunque nello stasso grafo.
-varie strategie di ricerca dei sottografi(nelle slide perchè mi secca scrivere e voglio sentire, e continua a farlo dalle slide perchè sinceramente mi scazza e lo trovo inutile sorry, ma che sorry giorgio fa schifo la parte di GSPAN)
-
-VABEH mining dello stesso grafo quasi uguale bisogna stare attenti agli overlap e ad altre cose ma è inutile pure quello
+varie strategie di ricerca dei sottografi(nelle slide perchè mi secca scrivere e voglio sentire, e continua a farlo dalle slide perchè sinceramente mi scazza e lo trovo inutile sorry)

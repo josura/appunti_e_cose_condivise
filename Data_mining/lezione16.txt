@@ -1,4 +1,4 @@
-﻿graph matching:
+graph matching:
 controllare se due grafi siano uguali o simili tra di loro, isomorfismo tra due grafi, uguali significa che deve esistere una corrispondenza(un matching probabilmente tra nodi ed archi).
 infatti due grafi si dicono isomorfici se esiste una funzione biettiva che prende in input un nodo del primo grafo e restituisce un nodo del secondo grafo, questa funzione deve far si che per ogni arco del primo grafo con associato i due nodi, l'arco nel secondo grafo costituito dall'immagine dei due nodi deve appartenere all'insieme degli archi del secondo grafo
 come facciamo a stabilire se due grafi siano uguali tra di loro, costruiamo una funzione biiettiva di mapping(f:A->B dove A è l'insieme dei nodi del primo grafo da confrontare, B etc..) tale che (u,v)C E1 se (f(u),f(v))C E2
@@ -27,8 +27,8 @@ l'aggiunta di una nuova coppia di matching (all'insieme delle coppie già mappat
 VF(da rivedere bene sia su internet che sulle slide, di fondo non te lo consiglio troppo in dettaglio, però l'algoritmo è abbastanza semplice, funzione ricorsiva, condizione "base" cioè di stop dell'algoritmo è che M(s) copra tutti i nodi del grafo query? sinceramente mi sembra un po' brutto però, no in realtà esce fuori dalla funzione quando non ha trovato match che abbiano superato i test, quindi di fondo ci sta, il caso base si riduce a"tutti", oppure M(s) con sottografo annesso. poi vediamo tutte le possibili coppie di candidati e controlliamo quali tra di loro soddisfano le condizioni di fattibilità, aggiungendo a M(s) le coppie che passano il test, e dopo richiamando di nuovo la funzione ricorsivamente con parametro il nuovo insieme di nodi matchati)
 
 per vedere le regole di fattibilità slide(i vari insiemi utilizzati etc...)
-una coppia di nodi può essere aggiunta nell'insieme dei nodi matchati se e solo se: per ogni nodo(appartenente già all’insieme dei matchati) connesso a n, il corrispondente nodo appartenente all'insieme dei matchati è connesso ad m
-i nodi connessi a n appartenenti a T è minore o uguale al numero di nodi in T2 connessi a m(in pratica hanno gli stessi nodi connessi mappati, stesso grado di nodi mappati)
+una coppia di nodi può essere aggiunta nell'insieme dei nodi matchati se e solo se: per ogni nodo(appartenente già al insieme dei matchati) connesso a n, il corrispondente nodo appartenente all'insieme dei matchati è connesso ad m
+i nodi connessi a n appartenenti a T è minore o uguale al numero di nodi in T2 connessi a m(in pratica hanno gli stessi nodi connessi mappati)
 regole lookahead
 
 per grafi diretti le regole sono più o meno le stesse, raddoppiano perchè ora bisogna considerare pure la direzione dell'adiacenza(connessione)
@@ -36,19 +36,18 @@ per grafi diretti le regole sono più o meno le stesse, raddoppiano perchè ora 
 se vogliamo isomorfismo tra i grafi dobbiamo sostituire il minore uguale nelle regole look-ahead con uguale per prendere solo i sottografi che effettivamente matchano 
 
 esistono varie ottimizzazioni per vf
-la prima ottimizzazione, usare strutture dati globali condivise tra tutti gli stati. si evitano troppe strutture dati, usando I core abbiamo direttamente I mappping tra I nodi. 
+la prima ottimizzazione, usare strutture dati globali condivise tra tutti gli stati. si evitano troppe strutture dati. 
 possiamo ordinare i nodi della query(sulla base del grado), i nodi vengono quindi processati seguendo l'ordinamento decrescente teoricamente in modo da considerare quelli che sono hub in tutto e per tutto prima nella catena degli eventi e nel susseguirsi degli stati, inoltre possiamo precalcolarci  gli insiemi dei nodi matchati e di quelli adiacenti-connessi.possiamo inoltre scegliere come prossimo candidato favorito la coppia candidata successiva
 le regole di fattibilità-pruning di VF sono utili per diminuire lo spazio di ricerca delle soluzioni, ma sono molto costose da implementare, ora vedremo RI
 questa idea di ordinare i nodi della query era già presente nell'algoritmo RI(che nota che effettivamente l'aspetto più importante da tenere conto durante la ricerca di isomorfismi è effettivamente dove iniziamo e come continuiamo con i nodi, come dirò dopo, partendo da nodi con gradi molto alti, le nostre possibilità di match aumentano piuttosto che partire e continuare da un nodo che potrebbe essere con un grado basso, e di conseguenza con una minore probabilità di essere effettivaemente parte del sottografo query), partendo da nodi con grado alto possiamo sia essere quasi sicuri di trovare un giusto e veloce match, inoltre possiamo tralasciare alcune regole di fattibilità(per esempio possiamo considerare solo la regola di Ullman), l'ordinamento si può fare in diversi modi, considerando(dynamic) o no il grafo target(static, più pesante considerarlo)
 RI usa questo approccio con singola regola di ullman, ordinamento statico più regola di ullman, comunque durante la costruzione l'ordinamento cambia in base anche al collegamento con altri nodi inseriti nell'ordinamento, quindi i nodi vengono ordinati in base ad un punteggio(somma di cardinalità scelte dai tre insiemi, massimizzare l'insieme dei nodi connessi, nodi ordinati connessi direttamente(adj) a v, nodi ordinati connessi indirettamente a v, nodi non connessi) in caso di parità varie tra le cardinalità, nodo random, andare a guardare l'esempio per capire bene
 
 GRAPH MATCHING IN DB DI GRAFI:
-graph match su database, trovare tutti i grafi che matchano, la soluzione naive è quella di utilizzare lo stesso algoritmo su tutte i record(grafi), per aumentare le prestazioni dobbiamo indicizzare, FILTRARE su tutti i record, trovare quelli che effettivamente possono essere matchati.
+graph match su database, trovare tutti i grafi che matchano, la soluzione naive è quella di utilizzare lo stesso algoritmo su tutte i record(grafi), per aumentare le prestazioni dobbiamo indicizzare, filtrare su tutti i record, trovare quelli che effettivamente possono essere matchati.
 ci sono vari modi per indicizzare un grafo, o con feature(archi, cammini di lunghezze varie, alberi, qualcosa del genere, nulla di troppo complicato), e non basata su feature, utilizzare delle strutture(Btree, Rtree), che ci permette di memorizzare questi grafi in maniera "performante".
 noi ci concentriamo sulla prima feature.
 
 contando i cammini di lunghezza 2 con query e target(con numeri per vedere quante volte), confrontare le feature con i vari record, scartare i record che non rispettano le condizioni sulle feature della query, più efficace è il filtraggio, meglio il risultato.
-
-Tecnica molto usata e importante è l'indicizzazione inversa, per ogni feature memorizzo i set di grafi che contengono quella feature(con lista o qualcosa del genere prob, in pratica come tabelle hash a risoluzione di conflitti con liste-concatenzione), comunque questa operazione è preprocessing, possiamo inoltre utilizzare una specie di bitmap e fare & logico su tutte le feature da avere per riuscire a prendere i record che rispettano(posseggono) le feature richieste.
+tecnica molto usata e importante è l'indicizzazione inversa, per ogni feature memorizzo i set di grafi che contengono quella feature(con lista o qualcosa del genere prob, in pratica come tabelle hash a risoluzione di conflitti con liste-concatenzione), comunque questa operazione è preprocessing, possiamo inoltre utilizzare una specie di bitmap e fare & logico su tutte le feature da avere per riuscire a prendere i record che rispettano(posseggono) le feature richieste.
 possiamo filtrare ulteriormente i record di grafi vedendo il nodo da dove partono le feature, se non partono dallo stesso nodo allora possiamo scartarlo, questo è implementato solitamente comunque con indice inverso(locale), che tiene una bitmap dei nodi(ordinamento dei cammini?)
 quindi un vertice x per essere compatibilie con v deve contenere tutte le feature che partono dal nodo v nella query e tutte le feature partono dal nodo x.
