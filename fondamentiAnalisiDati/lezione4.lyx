@@ -76,41 +76,40 @@
 \begin_body
 
 \begin_layout Standard
-Lui è Giovanni Gallo, non Tiziano Ferro, solo email non messenger
+Ci siamo lasciati con i problemi degli outlier
 \end_layout
 
 \begin_layout Standard
-Introduzione a Data science
+il metodo di tuckey prende la distanza interquartile e propone l'intervallo
+ del threshold secondo quella formula, 
 \end_layout
 
 \begin_layout Standard
-Esami con progetto(prendere un dataset e analizzarlo, essere originali,
- jupyter top waifu), documentazione minima progetto, colloquio con 3 domande
- di teoria.
+classica differenza tra problemi di popolazione e di campione, problemi
+ di overfitting evitati nel caso di pochi campioni, in pratica più varianza
+ meno bias
 \end_layout
 
 \begin_layout Standard
-3 MOMENTI DEL PROGETTO, scegliere il dataset, sviluppare il progetto aka
- revisione, presentazione del progetto.
+Bella la pdf uniforme a tratti
 \end_layout
 
 \begin_layout Standard
-Comunque questa lezione me la riguardo ma non prendo appunti, personalmente
- la trovo abbastanza semplice, parla di bias, dipenladenze, popolazione
- e campione
+ha fatto vedere la binomiale, whatever.
 \end_layout
 
 \begin_layout Standard
-dati rettangolari aka rappresentabili in tabelle vs forme irregolari
+distribuzioni deterministiche e randomiche? sta dicendo di immagini dove
+ i pixel sono noise ed altre reali, differenza tra randomico e simil-determinist
+ico
 \end_layout
 
 \begin_layout Standard
-ALTRE COSE DA VEDERE NEL VIDEO E DAGLI APPUNTI
+La distribuzione binomiale al variare di p arriva ad assomigliare alla gaussiana
 \end_layout
 
 \begin_layout Standard
-dati immergibili in uno spazio metrico sicuramente dati simil numerici rappresen
-tabili, dati non metrici sono grafi e contatti
+dev.st = 0 indica la funzione di dirac
 \end_layout
 
 \end_body

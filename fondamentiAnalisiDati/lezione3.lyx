@@ -76,41 +76,40 @@
 \begin_body
 
 \begin_layout Standard
-Lui è Giovanni Gallo, non Tiziano Ferro, solo email non messenger
+Stiamo riprendendo le misure puntuali per il calcolo delle medie aka media
+ geometrica, logaritmica, pesata, trimmed
 \end_layout
 
 \begin_layout Standard
-Introduzione a Data science
+interquartile range particolarmente importante
 \end_layout
 
 \begin_layout Standard
-Esami con progetto(prendere un dataset e analizzarlo, essere originali,
- jupyter top waifu), documentazione minima progetto, colloquio con 3 domande
- di teoria.
+range e problemi di scala, certe volte la normalizzazione è necessaria
 \end_layout
 
 \begin_layout Standard
-3 MOMENTI DEL PROGETTO, scegliere il dataset, sviluppare il progetto aka
- revisione, presentazione del progetto.
+normalizzazione con z-scoring, (x-media)/dev.st
 \end_layout
 
 \begin_layout Standard
-Comunque questa lezione me la riguardo ma non prendo appunti, personalmente
- la trovo abbastanza semplice, parla di bias, dipenladenze, popolazione
- e campione
+cambiamento lineare di scala
 \end_layout
 
 \begin_layout Standard
-dati rettangolari aka rappresentabili in tabelle vs forme irregolari
+eccesso di curtosi come sostituzione a curtosi, mesocurtico tendente a 0
+ un classicone, platicurtico < 0 con code magre, leptocurtico > 0 con code
+ grasse.
 \end_layout
 
 \begin_layout Standard
-ALTRE COSE DA VEDERE NEL VIDEO E DAGLI APPUNTI
+Outlier scelte di soglia, Tukey's fence metodo classico per la scelta del
+ threshold, usa i quartili e l'interquartile range, k grande per poco timore
+ di outlier, per valori sicuri k piccolo.
 \end_layout
 
 \begin_layout Standard
-dati immergibili in uno spazio metrico sicuramente dati simil numerici rappresen
-tabili, dati non metrici sono grafi e contatti
+
 \end_layout
 
 \end_body
