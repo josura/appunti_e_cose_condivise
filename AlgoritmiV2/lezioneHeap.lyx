@@ -5,6 +5,10 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{algorithm} 
+\usepackage{algpseudocode} 
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -29,6 +33,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -44,6 +49,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -75,15 +81,48 @@
 
 \begin_body
 
-\begin_layout Standard
-Sta rivedendo le tabelle dinamiche che ho già visto in modo dettagliato
- già dal libro, abbiamo fatto esercizi ed ora stiamo vedendo come scalare
- il costo
+\begin_layout Section
+FIBONACCI HEAP
 \end_layout
 
 \begin_layout Standard
-Scalare il costo significa cambiare l'unità di misura del potenziale, esempio
- nelle slide, non mi sembra ci sia nel libro comunque
+dalle vecchie lezioni heap binomiali e unione di sue o più heap, che alla
+ fine è una somma binaria.
+\end_layout
+
+\begin_layout Standard
+decrease key sono le operazioni più problematiche
+\end_layout
+
+\begin_layout Standard
+Gli heap di fibonacci sono una versione rilassata degli heap binomiali,
+ questo rilassamento avviene in senso duplice?
+\end_layout
+
+\begin_layout Standard
+un heap di fibonacci è una collezione di alberi con la proprietà Heap.
+\end_layout
+
+\begin_layout Standard
+Tutto un po' costante, anche se in realtà la metà è costo ridotto
+\end_layout
+
+\begin_layout Standard
+rappresentazione del nodo con quei 5 campi, mark segna quando viene perso
+ un figlio after una operazione
+\end_layout
+
+\begin_layout Standard
+funzione potenziale
+\begin_inset Formula $\phi(H)=t(h)+2m(H)$
+\end_inset
+
+ dove t sono alberi nella lista delle radici, e m sono i nodi marcati.
+\end_layout
+
+\begin_layout Standard
+Alberi binomiali non ordinati nel senso che le radici non hanno grado crescente
+ tra primo figlio e ultimo.
 \end_layout
 
 \end_body
