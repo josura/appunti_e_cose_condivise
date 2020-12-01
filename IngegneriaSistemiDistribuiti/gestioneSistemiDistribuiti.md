@@ -48,5 +48,5 @@ Messaggistica per affidarsi ad un sistema di passaggio di messaggi asincroni per
 stiamo rivedendo Circuit Breaker nello specifico come design pattern.
 
 # circuit breaker design pattern
-![circuit breaker design][immagini\circuitBreaker.png]
+<p align="center"><img src="./immagini/circuitbreaker.png" alt="drawing"/></p>
 stato del servizio, monitorazione dell'esecuzione.
