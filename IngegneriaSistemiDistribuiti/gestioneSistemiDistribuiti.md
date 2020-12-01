@@ -13,7 +13,8 @@ con java.util.concurrent usare poll(), offer(), tryLock();
 codice invaso dalla gestione di errori per timeout.
 Utilizzare uno strato di codice ulteriore di metodi con timeout handling riutilizzabili e modulari.
 usare un generico **gateway** che fornisce un template per la gestione di connessione, errori, esecuzione di query e organizzazione dei risultati, il gateway imposta e gestisce i parametri.
-inserire tutte queste interazioni da controllare rende più facile applicare [Circuit Breaker](#circuit breaker)
+inserire tutte queste interazioni da controllare rende più facile applicare 
+[Circuit Breaker](#circuit breaker)
 spesso si riprova ad eseguire di nuovo l'operazione fallita per timeout.
 riprovare immediatamente dopo il fallimento non è una buona strategia, riprovare dopo un periodo.
 
@@ -47,5 +48,5 @@ Messaggistica per affidarsi ad un sistema di passaggio di messaggi asincroni per
 stiamo rivedendo Circuit Breaker nello specifico come design pattern.
 
 # circuit breaker design pattern
-![circuit breaker design][./immagini/circuitBreaker.png]
+![circuit breaker design][immagini/circuitBreaker.png]
 stato del servizio, monitorazione dell'esecuzione.
